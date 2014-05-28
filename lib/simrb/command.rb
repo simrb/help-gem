@@ -34,6 +34,7 @@ module Simrb
 			case @cmd
 			when 'init'
 				init
+				puts "Successfully initialized"
 			else
 				puts "No #{@cmd} command found in simrb"
 			end
