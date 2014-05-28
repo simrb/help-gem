@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
 	s.description 			= Simrb::Info[:description]
   	s.summary 				= Simrb::Info[:summary]
 	s.license				= Simrb::Info[:license]
+	s.rubyforge_project 	= s.name
 
 	s.executables 			= ['simrb']
 	s.default_executable	= 'simrb'
