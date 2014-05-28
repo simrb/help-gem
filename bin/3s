@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+# A shortcut of /bin/simrb
+require 'simrb'
