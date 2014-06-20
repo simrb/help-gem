@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 	s.license				= Simrb::Info[:license]
 	s.rubyforge_project 	= s.name
 
-	s.executables 			= ['simrb']
+	s.executables 			= ['simrb', '3s']
 	s.default_executable	= 'simrb'
 #   s.files 				= `git ls-files`.split("\n")
 	

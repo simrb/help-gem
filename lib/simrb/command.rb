@@ -21,11 +21,6 @@ module Simrb
 
 		# initialize environment
 		def self.init_env
-			# bash command
-			if `which 3s`.empty?
-				`echo 'alias 3s="ruby cmd.rb"' >> ~/.bashrc && source`
-			end
-
 			# basic gem bundling
 			if @args.include? '--dev'
 				system("bundle install --gemfile=#{@appname}/modules/system/stores/Gemfile --without=production")

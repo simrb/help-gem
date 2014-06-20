@@ -4,7 +4,7 @@ module Simrb
 		:name			=>	'simrb',
 		:created		=>	'2014-01-01',
 		:alias_name		=>	'3s',
-		:version		=>	'1.0.3',
+		:version		=>	'1.0.4',
 		:author			=>	'Linyu Deng',
 		:email			=>	'coolesting@gmail.com',
 		:homepage		=>	'https://github.com/simrb/simrb-gem',

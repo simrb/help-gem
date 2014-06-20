@@ -1,4 +1,8 @@
 #!/usr/bin/env ruby
 
-# A shortcut of /bin/simrb
-require 'simrb'
+loadfile = 'cmd.rb'
+if File.exist? loadfile
+	require("#{Dir.pwd}/#{loadfile}")
+else
+	puts "This command only is used in root directory of project"
+end
