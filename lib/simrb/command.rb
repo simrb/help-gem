@@ -4,7 +4,7 @@ module Simrb
 
 	class Scommand
 
-		# pull the simrb
+		# generate a copy of simrb that clones from remote
 		#
 		# == Example
 		# 
@@ -41,9 +41,18 @@ module Simrb
 			when 'init'
 				init
 				puts "Successfully initialized"
+			when 'kill'
+				kill
+				puts "the process of web server has been killed yet"
 			else
 				puts "No #{@cmd} command found in simrb"
 			end
+		end
+
+		def self.kill
+			s = `ps ax | grep 'ruby thin.rb'`
+ 			s = s.split("\n")[0].split(" ")[0]
+			s = system("kill #{s}")
 		end
 
 	end
