@@ -29,14 +29,12 @@ module Simrb
 
 		# initialize environment
 		def self.init_env
-			# basic gem bundling
+			# run gem bundle
+			mode = "develpment"
 			if @args.include? '--dev'
-				system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=production")
-			elsif @args.include? '--pro'
-				system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=develpment")
-			else
-
+				mode = "production"
 			end
+			system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=#{mode}")
 		end
 
 		def self.run argv
