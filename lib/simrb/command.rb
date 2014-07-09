@@ -4,6 +4,14 @@ module Simrb
 
 	class Scommand
 
+		@repos_path 	= "https://github.com/simrb/simrb.git"
+
+		@gemfile_path 	= "/boxes/misc/Gemfile"
+
+		@app_name		= "simrb"
+
+		@module_name 	= "system"
+
 		# generate a copy of simrb that clones from remote
 		#
 		# == Example
@@ -12,8 +20,8 @@ module Simrb
 		#
 		def self.init
 			# get the copy from remote repository
-			@appname = @args[0] ? @args[0] : 'simrb'
-			system("git clone https://github.com/simrb/simrb.git #{@appname}")
+			@app_name = @args[0] if @args[0]
+			system("git clone #{@repos_path} #{@app_name}")
 
 			# initializes detected the running environment
 			init_env
@@ -23,9 +31,9 @@ module Simrb
 		def self.init_env
 			# basic gem bundling
 			if @args.include? '--dev'
-				system("bundle install --gemfile=#{@appname}/modules/system/stores/Gemfile --without=production")
+				system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=production")
 			elsif @args.include? '--pro'
-				system("bundle install --gemfile=#{@appname}/modules/system/stores/Gemfile --without=develpment")
+				system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=develpment")
 			else
 
 			end
