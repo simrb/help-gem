@@ -8,6 +8,7 @@ set :port, Scfg[:port]
 if Scfg[:environment] == 'production'
 
 	Process.daemon Sroot
+# 	system("echo #{Process.pid} > #{Spath[:tmp_dir]}pid")
  
 	if Scfg[:server_log_mode] == 'file'
 		log = File.new(Spath[:server_log], "a+") 

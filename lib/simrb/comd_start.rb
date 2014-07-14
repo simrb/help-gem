@@ -61,6 +61,8 @@ module Simrb
 		def self.kill
 			s = `ps -ax | grep 'simrb start'`
  			s = s.split("\n")[0].split(" ")[0]
+# 			s = `cat #{Spath[:tmp_dir]}pid`.split("\n")[0]
+# 			`rm #{Spath[:tmp_dir]}pid`
 			system("kill #{s}")
 		end
 
@@ -69,7 +71,9 @@ module Simrb
 
 		def self.info
 			require 'simrb/info'
-			puts Simrb::Info
+			Simrb::Info.each do | k, v |
+				puts "#{k.to_s.ljust(15)} => #{v}"
+			end
 		end
 
 	end
