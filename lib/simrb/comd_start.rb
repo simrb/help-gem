@@ -59,7 +59,7 @@ module Simrb
 		end
 
 		def self.kill
-			s = `ps ax | grep 'simrb start'`
+			s = `ps -ax | grep 'simrb start'`
  			s = s.split("\n")[0].split(" ")[0]
 			system("kill #{s}")
 		end
