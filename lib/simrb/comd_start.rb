@@ -59,9 +59,9 @@ module Simrb
 		end
 
 		def self.kill
-			s = `ps ax | grep 'ruby thin.rb'`
+			s = `ps ax | grep 'simrb start'`
  			s = s.split("\n")[0].split(" ")[0]
-			s = system("kill #{s}")
+			system("kill #{s}")
 		end
 
 		def self.clone
