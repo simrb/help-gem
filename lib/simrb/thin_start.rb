@@ -6,8 +6,9 @@ set :bind, Scfg[:bind]
 set :port, Scfg[:port]
 
 if Scfg[:environment] == 'production'
- 	Process.daemon
 
+	Process.daemon Sroot
+ 
 	if Scfg[:server_log_mode] == 'file'
 		log = File.new(Spath[:server_log], "a+") 
 		$stdout.reopen(log)
@@ -17,3 +18,4 @@ if Scfg[:environment] == 'production'
 		$stdout.sync = true
 	end
 end
+
