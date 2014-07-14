@@ -1,5 +1,3 @@
-require 'simrb/info'
-
 module Simrb
 
 	class Scommand
@@ -49,9 +47,14 @@ module Simrb
 				puts "Successfully initialized"
 			when 'kill'
 				kill
-				puts "the process of web server has been killed yet"
+				puts "The process of web server has been killed yet"
+			when 'info'
+				info
+			when 'clone'
+				clone
+				puts "The process of web server has been killed yet"
 			else
-				puts "No #{@cmd} command found in simrb"
+				puts "No #{@cmd} command found"
 			end
 		end
 
@@ -59,6 +62,14 @@ module Simrb
 			s = `ps ax | grep 'ruby thin.rb'`
  			s = s.split("\n")[0].split(" ")[0]
 			s = system("kill #{s}")
+		end
+
+		def self.clone
+		end
+
+		def self.info
+			require 'simrb/info'
+			puts Simrb::Info
 		end
 
 	end

@@ -17,12 +17,6 @@ Gem::Specification.new do |s|
 
 	s.executables 			= ['simrb', '3s']
 	s.default_executable	= 'simrb'
-#   s.files 				= `git ls-files`.split("\n")
-	
-	s.files					= [
-		'lib/simrb.rb',
-		'lib/simrb/info.rb',
-		'lib/simrb/command.rb',
-	]
+	s.files 				= `ls lib/simrb`.split("\n").map{|f| "lib/simrb/#{f}"}.unshift("lib/simrb.rb")
 
 end

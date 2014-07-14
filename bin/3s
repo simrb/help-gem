@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 
-loadfile = 'cmd.rb'
-if File.exist? loadfile
-	require("#{Dir.pwd}/#{loadfile}")
+if File.exist? 'scfg'
+	require 'simrb/tool_start'
 else
-	puts "This command only is used in root directory of project"
+	puts "This command only is used in root directory of project, no scfg file found"
 end

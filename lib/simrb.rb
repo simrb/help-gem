@@ -1,4 +1,7 @@
-Sroot = File.expand_path('../../', __FILE__)
 
-require 'simrb/command'
-Simrb::Scommand.run ARGV
+if ARGV[0] == 'start'
+	require 'simrb/thin_start'
+else
+	require 'simrb/comd_start'
+	Simrb::Scommand.run ARGV
+end
