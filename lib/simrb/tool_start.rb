@@ -1,6 +1,3 @@
-# ####################
-# booting for command mode
-# ####################
 require 'simrb/init'
 
 Sload[:tool].each do | path |

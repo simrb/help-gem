@@ -1,31 +1,47 @@
 require 'simrb/env'
+require 'sinatra'
+require 'sequel'
+require 'slim'
 
-# load config file
 unless File.exist? 'scfg'
-	data = {}
-	Simrb::Scfg[:init_self].each do | opt |
-		data[opt] = Simrb::Scfg[opt]
+	Simrb.p "This command only is used in root directory of project, no scfg file found"
+	exit
+end
+
+Svalid 	= {}
+Sdata 	= {}
+Sload 	= {}
+
+# increase language block
+class Sl
+	@@options = {}
+
+	class << self
+		def [] key
+			key = key.to_s
+			@@options.include?(key) ? @@options[key] : key
+		end
+
+		def << h
+			@@options.merge!(h)
+		end
 	end
-	Simrb.yaml_write('scfg', data)
 end
 
-Scfg = Simrb::Scfg
-Simrb.yaml_read('scfg').each do | k, v |
-	Scfg[k.to_sym] = v
-end
-
-# load patn
-Spath = Simrb::Spath
-if File.exist? 'spath'
-	Simrb.yaml_read('spath').each do | k, v |
-		Spath[k.to_sym] = v
+# increase data and valid block
+module Sinatra
+	class Application < Base
+		def self.data name = '', &block
+			(Sdata[name] ||= []) << block
+		end
+		def self.valid name = '', &block
+			(Svalid[name] ||= []) << block
+		end
 	end
-end
 
-# initialize default directories
-Scfg[:init_dir_path].each do | item |
-	path = "#{Spath[item]}"
-	Simrb::path_init path
+	module Delegator
+		delegate :data, :valid
+	end
 end
 
 # load modules

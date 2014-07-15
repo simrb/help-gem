@@ -1,7 +1,5 @@
 require File.expand_path('../lib/simrb/info', __FILE__)
 
-include Simrb
-
 Gem::Specification.new do |s|
 
 	s.name 					= Simrb::Info[:name]

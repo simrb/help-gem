@@ -1,82 +1,109 @@
+require 'simrb/env'
+
 module Simrb
 
 	class Scommand
 
-		@repos_path 	= "https://github.com/simrb/simrb.git"
+		@repos_path 	= "https://github.com/"
 
 		@gemfile_path 	= "/boxes/misc/Gemfile"
 
-		@app_name		= "simrb"
+		@app_name		= "myapp"
 
 		@module_name 	= "system"
 
-		# generate a copy of simrb that clones from remote
-		#
-		# == Example
-		# 
-		# 	$ simrb init myapp
-		#
-		def self.init
-			# get the copy from remote repository
-			@app_name = @args[0] if @args[0]
-			system("git clone #{@repos_path} #{@app_name}")
+		@args			= []
 
-			# initializes detected the running environment
-			init_env
+		def initialize args
+			@cmd 	= args.count > 0 ? args.shift : ''
+			@args	= args unless args.empty?
 		end
 
-		# initialize environment
-		def self.init_env
-			# run gem bundle
-			mode = "develpment"
-			if @args.include? '--dev'
-				mode = "production"
-			end
-			system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=#{mode}")
-		end
-
-		def self.run argv
-			if argv.count > 0
-				@cmd 	= argv.shift
-				@args	= argv ? argv : []
-			end
-
-			case @cmd
-			when 'init'
-				init
-				puts "Successfully initialized"
-			when 'kill'
-				kill
-				puts "The process of web server has been killed yet"
-			when 'info'
-				info
-			when 'clone'
-				clone
-				puts "The process of web server has been killed yet"
+		def run
+			if Scommand.private_method_defined? @cmd
+				self.send(@cmd)
 			else
-				puts "No #{@cmd} command found"
+				Simrb.p "No #{@cmd} command found"
 			end
 		end
 
-		def self.kill
-			s = `ps -ax | grep 'simrb start'`
- 			s = s.split("\n")[0].split(" ")[0]
-# 			s = `cat #{Spath[:tmp_dir]}pid`.split("\n")[0]
-# 			`rm #{Spath[:tmp_dir]}pid`
-			system("kill #{s}")
-		end
+		private
 
-		def self.clone
-		end
+			# generate a copy of Simrb that clones from remote
+			#
+			# == Example
+			# 
+			# 	$ simrb init myapp
+			#
+			def init
+				@app_name = @args[0] if @args[0]
 
-		def self.info
-			require 'simrb/info'
-			Simrb::Info.each do | k, v |
-				puts "#{k.to_s.ljust(15)} => #{v}"
+				# generate module directories and files
+				Dir.mkdir @app_name
+				Dir.chdir @app_name
+
+				Scfg[:init_root_path].each do | item |
+					path = "#{Spath[item]}"
+					Simrb::path_init path
+				end
+
+				# initialize scfg file
+				data = {}
+				Scfg[:init_scfg_item].each do | item |
+					data[item] = Scfg[item]
+				end
+				Simrb.yaml_write('scfg', data)
+
+				# initialize rubygem bundled
+# 				mode = "develpment"
+# 				if @args.include? '--dev'
+# 					mode = "production"
+# 				end
+# 				system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=#{mode}")
+
+				Simrb.p "Successfully initialized"
 			end
-		end
+
+			# clone a module from remote repository to local
+			#
+			# == Example
+			# 
+			# 	$ simrb clone simrb/system
+			#
+			def clone
+				system("git clone #{@repos_path}#{args[0]}.git modules/#{args[0].split('/').last}")
+				Simrb.p "The copy of module is built completely"
+			end
+
+			# kill the current process of Simrb of that is running in background
+			#
+			# == Example
+			#
+			# 	$ simrb kill
+			#
+			def kill
+				s = `ps -ax | grep 'simrb start'`
+				s = s.split("\n")[0].split(" ")[0]
+# 				s = `cat #{Spath[:tmp_dir]}pid`.split("\n")[0]
+# 				`rm #{Spath[:tmp_dir]}pid`
+				system("kill #{s}")
+				Simrb.p "The process of web server has been killed yet"
+			end
+
+			# display the basic inforamtion of current version of Simrb
+			#
+			# == Example
+			#
+			# 	$ simrb info
+			#
+			def info
+				require 'simrb/info'
+				Simrb.p Simrb::Info
+			end
 
 	end
 
 end
 
+app = Simrb::Scommand.new ARGV
+app.run

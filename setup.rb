@@ -1,5 +1,6 @@
+#!/usr/bin/env ruby
 
-if system("gem list -i simrb")
+unless `gem list -i simrb`.index("true") == nil
 	system("gem uninstall simrb")
 end
 

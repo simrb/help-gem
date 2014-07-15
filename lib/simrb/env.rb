@@ -1,23 +1,4 @@
-
-Sroot 	= Dir.pwd + '/'
-Svalid 	= {}
-Sdata 	= {}
-Sload 	= {}
-
-class Sl
-	@@options = {}
-
-	class << self
-		def [] key
-			key = key.to_s
-			@@options.include?(key) ? @@options[key] : key
-		end
-
-		def << h
-			@@options.merge!(h)
-		end
-	end
-end
+Sroot = Dir.pwd + '/'
 
 module Simrb
 
@@ -39,8 +20,20 @@ module Simrb
 		end
 
 		def p args
-			args = args.class.to_s == 'Array' ? args.join("\n") : args.to_s
-			puts "="*30 + "\n" + args + "\n" + "="*30
+			res = ""
+
+			if args.class.to_s == 'Array'
+				res = args.join("\n")
+			elsif args.class.to_s == 'Hash'
+				args.each do | k, v |
+					res << "#{k.to_s.ljust(15)} => #{v}\n"
+				end
+				res = res.chomp "\n"
+			else
+				res = args.to_s
+			end
+
+			puts "="*30 + "\n" + res + "\n" + "="*30
 		end
 
 		def load_module
@@ -77,20 +70,20 @@ module Simrb
 
 	# basic path definition
 	Spath						= {
-		# root path
-		:module					=> Sroot + 'modules/',
-		:public					=> Sroot + 'public/',
-		:db_dir					=> Sroot + 'db/',
-		:upload_dir				=> Sroot + 'db/upload/',
-		:backup_dir				=> Sroot + 'db/backup/',
-		:tmp_dir				=> Sroot + 'tmp/',
-		:cache_dir				=> Sroot + 'tmp/cache/simrb/',
-		:install_lock_file		=> Sroot + 'tmp/install.lock',
-		:log_dir				=> Sroot + 'log/',
-		:server_log				=> Sroot + 'log/thin.log',
-		:command_log			=> Sroot + 'log/command_error_log.html',
+		# root path of project
+		:module					=> 'modules/',
+		:public					=> 'public/',
+		:db_dir					=> 'db/',
+		:upload_dir				=> 'db/upload/',
+		:backup_dir				=> 'db/backup/',
+		:tmp_dir				=> 'tmp/',
+		:cache_dir				=> 'tmp/cache/simrb/',
+		:install_lock_file		=> 'tmp/install.lock',
+		:log_dir				=> 'log/',
+		:server_log				=> 'log/thin.log',
+		:command_log			=> 'log/command_error_log.html',
 
-		# sub path under the module directory
+		# sub path under module directory of project
 		:box					=> '/boxes/',
 		:lang					=> '/boxes/langs/',
 		:doc					=> '/boxes/docs/',
@@ -118,7 +111,7 @@ module Simrb
 		:number_types 			=> ['Fixnum', 'Integer', 'Float'],
 		:field_alias			=> {int:'Fixnum', str:'String', text:'Text', time:'Time', big:'Bignum', fl:'Float'},
 		:init_module_path		=> [:route, :store, :lang, :schema, :install, :modinfo, :misc, :gemfile, :view, :assets, :readme],
-		:init_dir_path			=> [:db_dir, :upload_dir, :backup_dir, :tmp_dir, :log_dir, :module],
+		:init_root_path			=> [:db_dir, :upload_dir, :backup_dir, :tmp_dir, :log_dir, :module],
 		:environment 			=> 'development',						# or production, test
 		:main_module			=> 'system',
 		:disable_modules		=> [],
@@ -131,28 +124,24 @@ module Simrb
 		:server 				=> 'thin',
 		:bind 					=> '0.0.0.0',
 		:port					=> 3000,
-		:init_self				=> [:lang, :db_connection, :environment, :bind, :port],
+		:init_scfg_item			=> [:lang, :db_connection, :environment, :bind, :port],
 	}
 
 end
 
-require 'sinatra'
-require 'sequel'
-require 'slim'
-
-# increase data and valid block
-module Sinatra
-	class Application < Base
-		def self.data name = '', &block
-			(Sdata[name] ||= []) << block
-		end
-		def self.valid name = '', &block
-			(Svalid[name] ||= []) << block
-		end
+# load config file in shortcut pipe
+Scfg = Simrb::Scfg
+if File.exist? 'scfg'
+	Simrb.yaml_read('scfg').each do | k, v |
+		Scfg[k.to_sym] = v
 	end
+end
 
-	module Delegator
-		delegate :data, :valid
+# load path in shortcut pipe
+Spath = Simrb::Spath
+if File.exist? 'spath'
+	Simrb.yaml_read('spath').each do | k, v |
+		Spath[k.to_sym] = v
 	end
 end
 

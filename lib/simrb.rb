@@ -1,7 +1,2 @@
 
-if ARGV[0] == 'start'
-	require 'simrb/thin_start'
-else
-	require 'simrb/comd_start'
-	Simrb::Scommand.run ARGV
-end
+require(ARGV[0] == 'start' ? 'simrb/thin_start' : 'simrb/comd_start')

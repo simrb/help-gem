@@ -1,7 +1,3 @@
 #!/usr/bin/env ruby
 
-if File.exist? 'scfg'
-	require 'simrb/tool_start'
-else
-	puts "This command only is used in root directory of project, no scfg file found"
-end
+require 'simrb/tool_start'
