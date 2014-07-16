@@ -43,6 +43,7 @@ Sload[:lang].each do | lang |
 	Sl << Simrb.yaml_read(lang)
 end
 
+# lood the hook of default configure
 require "simrb/hook"
 
 # load main files that will be run later
