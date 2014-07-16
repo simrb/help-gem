@@ -1,4 +1,4 @@
-require 'simrb/env'
+require 'simrb/config'
 
 module Simrb
 
