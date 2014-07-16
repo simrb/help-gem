@@ -38,7 +38,7 @@ module Simrb
 
 		def load_module
 			module_ds = {}
-			Dir["#{Spath[:module]}*"].each do | path |
+			Dir["#{Spath[:apps]}*"].each do | path |
 				path 	= "#{path}#{Spath[:modinfo]}"
 				content = Simrb.yaml_read path
 				name	= content[0]["name"]
@@ -71,7 +71,7 @@ module Simrb
 	# basic path definition
 	Spath						= {
 		# root path of project
-		:module					=> 'modules/',
+		:apps					=> 'apps/',
 		:public					=> 'public/',
 		:db_dir					=> 'db/',
 		:upload_dir				=> 'db/upload/',
@@ -110,8 +110,8 @@ module Simrb
 		:fixnum_types			=> ['order', 'level'],
 		:number_types 			=> ['Fixnum', 'Integer', 'Float'],
 		:field_alias			=> {int:'Fixnum', str:'String', text:'Text', time:'Time', big:'Bignum', fl:'Float'},
-		:init_module_path		=> [:route, :store, :lang, :schema, :install, :modinfo, :misc, :gemfile, :view, :assets, :readme],
-		:init_root_path			=> [:db_dir, :upload_dir, :backup_dir, :tmp_dir, :log_dir, :module],
+		:init_module_path		=> [:box, :lang, :schema, :install, :modinfo, :misc, :gemfile, :view, :assets, :readme, :route],
+		:init_root_path			=> [:db_dir, :upload_dir, :backup_dir, :tmp_dir, :log_dir, :apps],
 		:environment 			=> 'development',						# or production, test
 		:main_module			=> 'system',
 		:disable_modules		=> [],

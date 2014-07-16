@@ -64,6 +64,38 @@ module Simrb
 				Simrb.p "Successfully initialized"
 			end
 
+			# create a module, initialize default files
+			#
+			# == Example
+			# 
+			# 	$ simrb new blog
+			#
+			def new
+				@args.each do | module_name |
+					# module root dir
+					Simrb::path_init "#{Spath[:apps]}#{module_name}/"
+
+					Dir.chdir "."
+
+					# module sub dir
+					Scfg[:init_module_path].each do | item |
+						path = "#{Spath[:apps]}#{module_name}#{Spath[item]}"
+						Simrb::path_init path
+					end
+
+					# fill text to file for module info
+					text = [{ 'name' => module_name }]
+					Simrb.yaml_write "#{Spath[:apps]}#{module_name}#{Spath[:modinfo]}", text
+
+					path = "#{Spath[:apps]}#{module_name}#{Spath[:gitignore]}"
+					File.open(path, "w+") do | f |
+						f.write "*.swp\n*.gem\n*~"
+					end
+				end
+
+				Simrb.p "Successfully initialized"
+			end
+
 			# clone a module from remote repository to local
 			#
 			# == Example
