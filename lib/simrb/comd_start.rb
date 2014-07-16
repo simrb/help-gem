@@ -29,7 +29,7 @@ module Simrb
 
 		private
 
-			# generate a copy of Simrb that clones from remote
+			# initialize a project directory
 			#
 			# == Example
 			# 
@@ -59,12 +59,12 @@ module Simrb
 # 				if @args.include? '--dev'
 # 					mode = "production"
 # 				end
-# 				system("bundle install --gemfile=#{@app_name}/modules/#{@module_name}#{@gemfile_path} --without=#{mode}")
+# 				system("bundle install --gemfile=#{@app_name}/apps/#{@module_name}#{@gemfile_path} --without=#{mode}")
 
 				Simrb.p "Successfully initialized"
 			end
 
-			# create a module, initialize default files
+			# create a module, initialize default paths of file and directory
 			#
 			# == Example
 			# 
