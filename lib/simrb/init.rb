@@ -22,7 +22,7 @@ class Sl
 end
 
 # load modules
-Smodules = Simrb.load_module
+Sapps = Simrb.load_module
 
 # scan file path
 Sload 				= {}
@@ -31,7 +31,7 @@ Sload[:main] 		= []
 Sload[:tool] 		= []
 Sload[:view] 		= []
 
-Smodules.each do | name |
+Sapps.each do | name |
 	Sload[:lang] 	+= Dir["#{Sroot}#{Spath[:apps]}#{name}#{Spath[:lang]}*.#{Scfg[:lang]}"]
 	Sload[:tool] 	+= Dir["#{Sroot}#{Spath[:apps]}#{name}#{Spath[:box]}*.rb"]
 	Sload[:main] 	+= Dir["#{Sroot}#{Spath[:apps]}#{name}/*.rb"]

@@ -39,7 +39,7 @@ else
 	Sdocs = {}
 	argv.shift 1 
 
-	Smodules.each do | name |
+	Sapps.each do | name |
 		Dir["#{Spath[:apps]}#{name}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path |
 			require path
 		end
