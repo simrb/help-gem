@@ -4,19 +4,12 @@ module Simrb
 
 	class Scommand
 
-		@repos_path 	= "https://github.com/"
-
-		@gemfile_path 	= "/boxes/misc/Gemfile"
-
-		@app_name		= "myapp"
-
-		@module_name 	= "system"
-
-		@args			= []
-
 		def initialize args
-			@cmd 	= args.count > 0 ? args.shift : ''
-			@args	= args unless args.empty?
+			@cmd 			= args.count > 0 ? args.shift : ''
+			@args			= args unless args.empty?
+			@repos_path 	= "https://github.com/"
+			@app_name		= "myapp"
+			@args			= []
 		end
 
 		def run
@@ -103,7 +96,8 @@ module Simrb
 			# 	$ simrb clone simrb/system
 			#
 			def clone
-				system("git clone #{@repos_path}#{args[0]}.git modules/#{args[0].split('/').last}")
+				p "git clone #{@repos_path}#{@args[0]}.git #{Spath[:apps]}#{@args[0].split('/').last}"
+				system("git clone #{@repos_path}#{@args[0]}.git #{Spath[:apps]}#{@args[0].split('/').last}")
 				Simrb.p "The copy of module is built completely"
 			end
 
