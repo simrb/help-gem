@@ -6,10 +6,8 @@ module Simrb
 
 		def initialize args
 			@cmd 			= args.count > 0 ? args.shift : ''
-			@args			= args unless args.empty?
-			@repos_path 	= "https://github.com/"
+			@args			= args.empty? ? [] : args
 			@app_name		= "myapp"
-			@args			= []
 		end
 
 		def run
@@ -96,8 +94,7 @@ module Simrb
 			# 	$ simrb clone simrb/system
 			#
 			def clone
-				p "git clone #{@repos_path}#{@args[0]}.git #{Spath[:apps]}#{@args[0].split('/').last}"
-				system("git clone #{@repos_path}#{@args[0]}.git #{Spath[:apps]}#{@args[0].split('/').last}")
+				system("git clone #{Scfg[:repo_source]}#{@args[0]}.git #{Spath[:apps]}#{@args[0].split('/').last}")
 				Simrb.p "The copy of module is built completely"
 			end
 
