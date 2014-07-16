@@ -87,7 +87,7 @@ module Simrb
 # 				s = `cat #{Spath[:tmp_dir]}pid`.split("\n")[0]
 # 				`rm #{Spath[:tmp_dir]}pid`
 				system("kill #{s}")
-				Simrb.p "The process of web server has been killed yet"
+				Simrb.p "The process #{s} of web server has been killed yet"
 			end
 
 			# display the basic inforamtion of current version of Simrb
