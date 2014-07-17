@@ -1,9 +1,6 @@
 require 'simrb/config'
 
-unless File.exist? 'scfg'
-	Simrb.p "This command only is used in root directory of project, no scfg file found"
-	exit
-end
+Simrb.is_root_dir?
 
 # increase language block
 class Sl
@@ -20,9 +17,6 @@ class Sl
 		end
 	end
 end
-
-# load modules
-Sapps = Simrb.load_module
 
 # scan file path
 Sload 				= {}

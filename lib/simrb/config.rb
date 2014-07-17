@@ -66,6 +66,13 @@ module Simrb
 			end
 		end
 
+		def is_root_dir?
+			unless File.exist? 'scfg'
+				Simrb.p "Current command only allow to be ran under the root directory of project, no scfg file found"
+				exit
+			end
+		end
+
 	end
 
 	# basic path definition
@@ -145,3 +152,5 @@ if File.exist? 'spath'
 	end
 end
 
+# load modules
+Sapps = Simrb.load_module
