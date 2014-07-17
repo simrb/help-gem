@@ -5,12 +5,14 @@ module Simrb
 	class Scommand
 
 		def run args = []
-			cmd = args.empty? ? '' : args.shift
+			@output = []
+			cmd 	= args.empty? ? '' : args.shift
 			if Scommand.private_method_defined? cmd
 				self.send(cmd, args)
 			else
-				Simrb.p "No #{cmd} command found"
+				@output << "No #{cmd} command found"
 			end
+			Simrb.p(@output.empty? ? 'Implemented complete' : @output)
 		end
 
 		private
@@ -61,7 +63,7 @@ module Simrb
 # 				end
 # 				system("bundle install --gemfile=#{@app_name}/apps/#{@module_name}#{@gemfile_path} --without=#{mode}")
 
-				Simrb.p "Initialized project complete"
+				@output << "Initialized project complete"
 			end
 
 			# create a module, initialize default paths of file and directory
@@ -70,31 +72,41 @@ module Simrb
 			# 
 			# 	$ simrb new blog
 			#
+			# or, more than one at same time
+			# 	
+			# 	$ simrb new blog cms test
+			#
 			def new args
-				args.each do | module_name |
-					# create root dir of module
-					Simrb::path_init "#{Spath[:apps]}#{module_name}/"
+				Simrb.is_root_dir?
 
-					Dir.chdir "."
+				args.each do | name |
+					if Sapps.include? name
+						@output << "The module #{name} is existing, not new it"
+					else
+						# create root dir of module
+						Simrb::path_init "#{Spath[:apps]}#{name}/"
 
-					# create sub dir of module 
-					Scfg[:init_module_path].each do | item |
-						path = "#{Spath[:apps]}#{module_name}#{Spath[item]}"
-						Simrb::path_init path
-					end
+						Dir.chdir "."
 
-					# write the content of module info
-					text = [{ 'name' => module_name }]
-					Simrb.yaml_write "#{Spath[:apps]}#{module_name}#{Spath[:modinfo]}", text
+						# create sub dir of module 
+						Scfg[:init_module_path].each do | item |
+							path = "#{Spath[:apps]}#{name}#{Spath[item]}"
+							Simrb::path_init path
+						end
 
-					# write the content of .gitignore
-					path = "#{Spath[:apps]}#{module_name}#{Spath[:gitignore]}"
-					File.open(path, "w+") do | f |
-						f.write "*.swp\n*.gem\n*~"
+						# write the content of module info
+						text = [{ 'name' => name }]
+						Simrb.yaml_write "#{Spath[:apps]}#{name}#{Spath[:modinfo]}", text
+
+						# write the content of .gitignore
+						path = "#{Spath[:apps]}#{name}#{Spath[:gitignore]}"
+						File.open(path, "w+") do | f |
+							f.write "*.swp\n*.gem\n*~"
+						end
 					end
 				end
 
-				Simrb.p "Initialized module complete"
+				@output << "Initialized module complete"
 			end
 
 			# clone a module from remote repository to local
@@ -103,11 +115,24 @@ module Simrb
 			# 
 			# 	$ simrb clone simrb/system
 			#
+			# or, more than one at same time
+			#
+			# 	$ simrb clone simrb/system simrb/test
+			#
 			def clone args
-				unless args.empty?
-					system("git clone #{Scfg[:repo_source]}#{args[0]}.git #{Spath[:apps]}#{args[0].split('/').last}")
-					Simrb.p "Cloned module complete"
+				Simrb.is_root_dir?
+
+				args.each do | name |
+					if Sapps.include? name
+						@output << "The module #{name} is existing, not clone from remote"
+					else
+						path = "#{Scfg[:repo_source]}#{name[0]}.git"
+						name = "#{Spath[:apps]}#{name[0].split('/').last}"
+						system("git clone #{path} #{name}")
+					end
 				end
+
+				@output << "Cloned module complete"
 			end
 
 			# kill the current process of Simrb of that is running in background
@@ -123,7 +148,7 @@ module Simrb
 # 				`rm #{Spath[:tmp_dir]}pid`
 
 				system("kill #{s}")
-				Simrb.p "Killed the process #{s} of Simrb"
+				@output << "Killed the process #{s} of Simrb"
 			end
 
 			# display the basic inforamtion of current version of Simrb
@@ -134,7 +159,7 @@ module Simrb
 			#
 			def info
 				require 'simrb/info'
-				Simrb.p Simrb::Info
+				@output << Simrb::Info
 			end
 
 	end

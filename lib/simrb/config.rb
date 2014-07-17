@@ -43,7 +43,7 @@ module Simrb
 				content = Simrb.yaml_read path
 				name	= content[0]["name"]
 				order	= (content[0]["order"] || 99)
-				module_ds[name] = order unless Scfg[:disable_modules].include?(name)
+				module_ds[name] = order unless Scfg[:disable_modules].include?(name.to_s)
 			end
 
 			res 		= []
