@@ -63,21 +63,22 @@ module Simrb
 			#
 			def new
 				@args.each do | module_name |
-					# module root dir
+					# create root dir of module
 					Simrb::path_init "#{Spath[:apps]}#{module_name}/"
 
 					Dir.chdir "."
 
-					# module sub dir
+					# create sub dir of module 
 					Scfg[:init_module_path].each do | item |
 						path = "#{Spath[:apps]}#{module_name}#{Spath[item]}"
 						Simrb::path_init path
 					end
 
-					# fill text to file for module info
+					# write the content of module info
 					text = [{ 'name' => module_name }]
 					Simrb.yaml_write "#{Spath[:apps]}#{module_name}#{Spath[:modinfo]}", text
 
+					# write the content of .gitignore
 					path = "#{Spath[:apps]}#{module_name}#{Spath[:gitignore]}"
 					File.open(path, "w+") do | f |
 						f.write "*.swp\n*.gem\n*~"
@@ -109,6 +110,7 @@ module Simrb
 				s = s.split("\n")[0].split(" ")[0]
 # 				s = `cat #{Spath[:tmp_dir]}pid`.split("\n")[0]
 # 				`rm #{Spath[:tmp_dir]}pid`
+
 				system("kill #{s}")
 				Simrb.p "The process #{s} of web server has been killed yet"
 			end
