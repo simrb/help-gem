@@ -2,7 +2,7 @@
 
 ## BEGIN
 
-### How to install ?
+How to install ?
 
 	$ gem install simrb
 
@@ -12,7 +12,7 @@ or, install with github
 	$ cd simrb-gem
 	$ ruby setup.rb
 
-### How to use ?
+How to use ?
 
 	$ simrb help
 
@@ -29,7 +29,8 @@ If you are a newbie in ruby or web, the following options is that tells you how 
 
 	$ yum install git
 
-### Step 03, install database, suppose the database is `sqlite`, type the commands to install it
+### Step 03, install database
+suppose the database is `sqlite`, type the commands to install it
 
 	# yum install sqlite3*
 	# yum install sqlite-devel
