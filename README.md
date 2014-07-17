@@ -2,7 +2,7 @@
 
 ## BEGIN
 
-### How to install ?
+How to install ?
 
 	$ gem install simrb
 
@@ -12,7 +12,7 @@ or, install with github
 	$ cd simrb-gem
 	$ ruby setup.rb
 
-### How to use ?
+How to use ?
 
 	$ simrb help
 
