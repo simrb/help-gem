@@ -36,8 +36,7 @@ if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
 # document mode
 else
 
-	Sdocs = {}
-	argv.shift 1 
+	require 'simrb/docs'
 
 	Sapps.each do | name |
 		Dir["#{Spath[:apps]}#{name}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path |
@@ -45,25 +44,8 @@ else
 		end
 	end
 
-	i = 0
-	docs_key = {}
-	docs_val = {}
-	Sdocs.each do | key, val |
-		docs_key[i] = key
-		docs_val[i] = val
-		i = i + 1
-	end
-
-	if argv.empty?
-		output << Sl['please select the number before the list to see detials, like $ 3s doc 2']
-		docs_key.each do | i, key |
-			output << "#{i.to_s}, #{key}"
-		end
-	else
-		argv.each do | i |
-			output << (docs_val.include?(i.to_i) ? docs_val[i.to_i] : Sl['no document'])
-		end
-	end
+	argv.shift 1 
+	output << Simrb.docs(argv)
 
 end
 
