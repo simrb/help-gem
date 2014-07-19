@@ -13,7 +13,7 @@ Gem::Specification.new do | s |
 	s.license				= Simrb::Info[:license]
 	s.rubyforge_project 	= s.name
 
-	s.executables 			= ['simrb', '3s']
+	s.executables 			= `ls bin`.split("\n")
 	s.default_executable	= 'simrb'
 	s.files 				= `ls lib/simrb`.split("\n").map{|f| "lib/simrb/#{f}"}.unshift("lib/simrb.rb")
 

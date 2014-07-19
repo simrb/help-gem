@@ -82,26 +82,26 @@ module Simrb
 				Simrb.is_root_dir?
 
 				args.each do | name |
-					if Sapps.include? name
+					if Smodules.include? name
 						@output << "The module #{name} is existing, not new it"
 					else
 						# create root dir of module
-						Simrb::path_init "#{Spath[:apps]}#{name}/"
+						Simrb::path_init "#{Spath[:module]}#{name}/"
 
 						Dir.chdir "."
 
 						# create sub dir of module 
 						Scfg[:init_module_path].each do | item |
-							path = "#{Spath[:apps]}#{name}#{Spath[item]}"
+							path = "#{Spath[:module]}#{name}#{Spath[item]}"
 							Simrb::path_init path
 						end
 
 						# write the content of module info
 						text = [{ 'name' => name }]
-						Simrb.yaml_write "#{Spath[:apps]}#{name}#{Spath[:modinfo]}", text
+						Simrb.yaml_write "#{Spath[:module]}#{name}#{Spath[:modinfo]}", text
 
 						# write the content of .gitignore
-						path = "#{Spath[:apps]}#{name}#{Spath[:gitignore]}"
+						path = "#{Spath[:module]}#{name}#{Spath[:gitignore]}"
 						File.open(path, "w+") do | f |
 							f.write "*.swp\n*.gem\n*~"
 						end
@@ -125,11 +125,11 @@ module Simrb
 				Simrb.is_root_dir?
 
 				args.each do | name |
-					if Sapps.include? name
+					if Smodules.include? name
 						@output << "The module #{name} is existing, not clone from remote"
 					else
 						path = "#{Scfg[:repo_source]}#{name[0]}.git"
-						name = "#{Spath[:apps]}#{name[0].split('/').last}"
+						name = "#{Spath[:module]}#{name[0].split('/').last}"
 						system("git clone #{path} #{name}")
 					end
 				end

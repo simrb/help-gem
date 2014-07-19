@@ -25,11 +25,11 @@ Sload[:main] 		= []
 Sload[:tool] 		= []
 Sload[:view] 		= []
 
-Sapps.each do | name |
-	Sload[:lang] 	+= Dir["#{Sroot}#{Spath[:apps]}#{name}#{Spath[:lang]}*.#{Scfg[:lang]}"]
-	Sload[:tool] 	+= Dir["#{Sroot}#{Spath[:apps]}#{name}#{Spath[:box]}*.rb"]
-	Sload[:main] 	+= Dir["#{Sroot}#{Spath[:apps]}#{name}/*.rb"]
-	Sload[:view]	<< "#{Sroot}#{Spath[:apps]}#{name}#{Spath[:view]}".chomp("/")
+Smodules.each do | name |
+	Sload[:lang] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:lang]}*.#{Scfg[:lang]}"]
+	Sload[:tool] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:box]}*.rb"]
+	Sload[:main] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}/*.rb"]
+	Sload[:view]	<< "#{Sroot}#{Spath[:module]}#{name}#{Spath[:view]}".chomp("/")
 end
 
 # cache label statement of language

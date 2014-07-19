@@ -39,7 +39,7 @@ else
 	require 'simrb/help'
 
 	Sapps.each do | name |
-		Dir["#{Spath[:apps]}#{name}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path |
+		Dir["#{Spath[:module]}#{name}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path |
 			require path
 		end
 	end
