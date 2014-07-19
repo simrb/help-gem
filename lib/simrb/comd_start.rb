@@ -169,11 +169,12 @@ module Simrb
 			# == Example
 			#
 			# 	$ simrb help
+			# 	$ simrb help 0
 			#
 			def help args = []
-				require 'simrb/docs'
 				require 'simrb/help'
-				@output << Simrb.docs(args)
+				require 'simrb/docs'
+				@output << Simrb.help(args)
 			end
 
 	end

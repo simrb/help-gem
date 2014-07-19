@@ -36,7 +36,7 @@ if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
 # document mode
 else
 
-	require 'simrb/docs'
+	require 'simrb/help'
 
 	Sapps.each do | name |
 		Dir["#{Spath[:apps]}#{name}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path |
@@ -45,7 +45,7 @@ else
 	end
 
 	argv.shift 1 
-	output << Simrb.docs(argv)
+	output << Simrb.help(argv)
 
 end
 
