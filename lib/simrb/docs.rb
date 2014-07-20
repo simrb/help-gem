@@ -14,34 +14,38 @@ Doc
 
 Sdocs['Architecture'] =<<Doc
 
-=== Directory
+=== Directories and files
 
 /home/project
 ├── modules
 │   ├── module_name1
-│   │   ├── boxes                      ───│
+│   │   ├── boxes                      ───│ ---- DATA LAYER ----
 │   │   │   ├── docs                      │ stores the documents
 │   │   │   ├── tpls                      │ stores the templates, like *.erb
 │   │   │   ├── migrations                │ stores the migration records
-│   │   │   ├── langs                     │ stores the language file, *.en, *.de, *.cn , etc
+│   │   │   ├── langs                     │ stores the language file, *.en, *.de, *.cn, etc
 │   │   │   │   ├── name.en               │ 
 │   │   │   │   └── name.cn               │
-│   │   │   ├── misc                      │ stores the Gemfile, and others
+│   │   │   ├── misc                      │ stores the Gemfile, Gemfile.lock, and others
 │   │   │   │   └── Gemfile               │
 │   │   │   ├── installs                  │ stores the installing file that will be write into database, by
 │   │   │   │   └── _mods                 │ the file name as the table name
 │   │   │   ├── tool.rb                   │ these files will be loaded in command `$ 3s`
-│   │   │   └── ...                    ───│
-│   │   ├── views                         │ this is views layer,
-│   │   │    ├── assets                   │ assets stores the file *.js, *.css, *.jpg, *.png, etc
+│   │   │   └── ...                       │
+│   │   ├── views                      ───│ ---- VIEW LAYER ----
+│   │   │    ├── assets                   │ assets dir stores the file *.js, *.css, *.jpg, *.png, etc
 │   │   │    │   ├── jqeury.js            │
 │   │   │    │   └── style.css            │
-│   │   │    ├── temp.slim                │ here is stores the template files that will be loaded when the route file
-│   │   │    └── ...                   ───│ need it
-│   │   ├── README.md                     │
-│   │   ├── .gitignore                    │ this is logic layer, controler
-│   │   ├── routes.rb                     │ any files, like routes.rb, config.rb, lib.rb, *.rb, all will be loaded in
-│   │   └── ...                        ───│ startup of web server
+│   │   │    ├── temp.slim                │ here is stored the template files that will be loaded when the route file
+│   │   │    ├── demo.slim                │ need it
+│   │   │    ├── demo2.slim               │ 
+│   │   │    └── ...                      │ 
+│   │   ├── README.md                  ───│ ---- LOGIC LAYER ----
+│   │   ├── .gitignore                    │ 
+│   │   ├── routes.rb                     │ any files with suffix `rb`, like routes.rb, all will be loaded in
+│   │   ├── demo.rb                       │ startup of web server
+│   │   ├── demo2.rb                      │ 
+│   │   └── ...                        ───│ 
 │   │                                     
 │   ├── module_name2                   ───│ other modules, you add it according to the requirement
 │   ├── module_name3                      │
@@ -58,6 +62,22 @@ Sdocs['Architecture'] =<<Doc
 │   └── install.lock
 └── scfg                                   put any options of static configuration here with an hash form
 
+
+=== Modularization
+
+In Simrb, any functionalities that need to be packed into module, whatever you want to do, three ways to consist of handling it, new a module, or clone a module that has the requirement you want from remote repository, modify existed module at local.
+
+
+=== Configuration
+
+Simrb has two configuration files that is scfg and spath under the root directory, spath stores all of paths of default directory and file, and the scfg file is for setting options to your project application.
+
+
+=== Command-line
+
+Simrb includes two commands, `simrb`, `3s`, `simrb` is ran at globle, except the `new` and `clone`. The `3s` is only allowed to run at root directory of project. More detail please check `$ simrb help` and `$ 3s help`.
+
+And the functionality of `3s` command is extended by that file *.rb under the boxes dir
 Doc
 
 Sdocs['Command-line'] =<<Doc
