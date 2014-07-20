@@ -4,7 +4,7 @@ Sdocs['Preface'] =<<Doc
 
 Simrb is a framework for building server application. Many years ago, i had tried to find an application to do work of that i want to build something that could be used to run at server, and support the web service, web page, json data, xml data, and varied formats of data.
 
-The important things in using is need to be simple, flexible, comfortable. I couldn't find it, So this is the reason why would i build this software called Simrb.
+The importance things in using is need to be simple, flexible, comfortable. I couldn't find it, So this is the reason why would i build this software called Simrb.
 
 
 === What responsibility Simrb does ?
@@ -12,9 +12,9 @@ The important things in using is need to be simple, flexible, comfortable. I cou
 Defining the directory architecture, basic command-line, configuration option, initialize loading workflow, that is all.
 Doc
 
-Sdocs['Directory architecture'] =<<Doc
+Sdocs['Architecture'] =<<Doc
 
-Directory Architecture
+=== Directory
 
 /home/project
 ├── modules
@@ -62,9 +62,7 @@ Doc
 
 Sdocs['Command-line'] =<<Doc
 
-==================
-OVERVIEW
-==================
+=== Overview
 
 init    - initialize a project directory
 new     - create a new module
@@ -74,9 +72,9 @@ info    - show the information of current version of Simrb
 start   - boot Simrb up via web server mode
 kill    - kill the process of that web server you have booted up
 
-==================
-DESCRIPTION
-==================
+
+=== Description
+
 
 init
 ==================
@@ -160,3 +158,28 @@ Command format:
 	$ simrb kill
 Doc
 
+
+Sdocs['Hello World'] =<<Doc
+
+When it finished installing at once, you can cook yourself by a `Hello World` demo.
+
+Step 01, create a project directory called myapp
+
+	$ simrb init myapp
+
+Step 02, new a module called demo
+
+	$ cd myapp
+	$ simrb new demo
+
+Step 03, add content to file 
+
+	$ echo 'get "/hi" do "Hello world" end' > modules/demo/routes.rb
+
+Step 04, start up by web server to see what we have done
+
+	$ simrb start
+
+So, open browser and type the link http://0.0.0.0:3000/hi to address bar 
+yup, if you see the Hello world is there, welcome you fall in Simrb.
+Doc
