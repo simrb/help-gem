@@ -12,9 +12,8 @@ The importance things in using is need to be simple, flexible, comfortable. I co
 Defining the directory architecture, basic command-line, configuration option, initialize loading workflow, that is all.
 Doc
 
-Sdocs['Architecture'] =<<Doc
 
-=== Directories and files
+Sdocs['Directory'] =<<Doc
 
 /home/project
 ├── modules
@@ -36,8 +35,8 @@ Sdocs['Architecture'] =<<Doc
 │   │   │    ├── assets                   │ assets dir stores the file *.js, *.css, *.jpg, *.png, etc
 │   │   │    │   ├── jqeury.js            │
 │   │   │    │   └── style.css            │
-│   │   │    ├── temp.slim                │ here is stored the template files that will be loaded when the route file
-│   │   │    ├── demo.slim                │ need it
+│   │   │    ├── temp.slim                │ here is stored the template files that will be loaded
+│   │   │    ├── demo.slim                │ when the route file need it
 │   │   │    ├── demo2.slim               │ 
 │   │   │    └── ...                      │ 
 │   │   ├── README.md                  ───│ ---- LOGIC LAYER ----
@@ -61,28 +60,29 @@ Sdocs['Architecture'] =<<Doc
 ├── tmp
 │   └── install.lock
 └── scfg                                   put any options of static configuration here with an hash form
+Doc
 
 
-=== Modularization
-
-In Simrb, any functionalities that need to be packed into module, whatever you want to do, three ways to consist of handling it, new a module, or clone a module that has the requirement you want from remote repository, modify existed module at local.
-
-
-=== Configuration
+Sdocs['Configuration'] =<<Doc
 
 Simrb has two configuration files that is scfg and spath under the root directory, spath stores all of paths of default directory and file, and the scfg file is for setting options to your project application.
-
-
-=== Command-line
-
-Simrb includes two commands, `simrb`, `3s`, `simrb` is ran at globle, except the `new` and `clone`. The `3s` is only allowed to run at root directory of project. More detail please check `$ simrb help` and `$ 3s help`.
-
-And the functionality of `3s` command is extended by that file *.rb under the boxes dir
 Doc
+
+
+Sdocs['Modularization'] =<<Doc
+
+In Simrb, any functionalities that need to be packed into module, whatever you want to do, three ways to consist of handling it, new a module, or clone a module that has the requirement you want from remote repository, modify existed module at local.
+Doc
+
 
 Sdocs['Command-line'] =<<Doc
 
 === Overview
+
+Simrb includes two commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `clone`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by that file *.rb under the boxes dir
+
+
+=== Description of command simrb
 
 init    - initialize a project directory
 new     - create a new module
@@ -91,9 +91,6 @@ help    - show the help documentation
 info    - show the information of current version of Simrb
 start   - boot Simrb up via web server mode
 kill    - kill the process of that web server you have booted up
-
-
-=== Description
 
 
 init
