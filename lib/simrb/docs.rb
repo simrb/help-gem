@@ -186,17 +186,16 @@ Step 01, create a project directory called myapp
 
 Step 02, new a module called demo
 
-	$ cd myapp
-	$ simrb new demo
+	$ cd myapp && simrb new demo
 
 Step 03, add content to file 
 
-	$ echo 'get "/hi" do "Hello world" end' > modules/demo/routes.rb
+	$ echo 'get "/" do "Hello world" end' > modules/demo/routes.rb
 
 Step 04, start up by web server to see what we have done
 
 	$ simrb start
 
-So, open browser and type the link http://0.0.0.0:3000/hi to address bar 
+So, open browser and type the link http://0.0.0.0:3000 to address bar,
 yup, if you see the Hello world is there, welcome you fall in Simrb.
 Doc
