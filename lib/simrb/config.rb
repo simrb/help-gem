@@ -82,7 +82,7 @@ module Simrb
 
 		def is_root_dir?
 			unless File.exist? 'scfg'
-				Simrb.p "Current command only allow to be ran under the root directory of project, no scfg file found"
+				Simrb.p "Current command only allow to be used under root directory of project"
 				exit
 			end
 		end
