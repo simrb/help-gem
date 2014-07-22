@@ -1,5 +1,3 @@
-require 'simrb/config'
-
 module Simrb
 
 	class Scommand
@@ -181,5 +179,3 @@ module Simrb
 
 end
 
-simrb_app = Simrb::Scommand.new
-simrb_app.run ARGV

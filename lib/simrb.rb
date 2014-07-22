@@ -1,2 +1,6 @@
+require 'simrb/config'
 
-require(ARGV[0] == 'start' ? 'simrb/thin_start' : 'simrb/comd_start')
+require 'simrb/comd'
+simrb_app = Simrb::Scommand.new
+simrb_app.run ARGV
+
