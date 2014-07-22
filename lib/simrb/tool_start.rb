@@ -1,5 +1,10 @@
 require 'simrb/init'
 
+module Simrb
+	module Stool
+	end
+end
+
 Sload[:tool].each do | path |
 	require path
 end
