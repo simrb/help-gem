@@ -38,9 +38,9 @@ else
 
 	require 'simrb/help'
 
-	Sapps.each do | name |
+	Smodules.each do | name |
 		Dir["#{Spath[:module]}#{name}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path |
-			require path
+			require(Sroot + path)
 		end
 	end
 

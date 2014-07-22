@@ -37,8 +37,21 @@ module Simrb
 		end
 
 		def load_module
-			module_ds = {}
-			Dir["#{Spath[:module]}*"].each do | path |
+			dirs 		= []
+			module_ds 	= {}
+
+			# get the path of module
+			if Scfg[:only_enable_modules].empty?
+				dirs = Dir["#{Spath[:module]}*"]
+			else
+				Scfg[:only_enable_modules].each do | name |
+					path = "#{Spath[:module]}#{name}"
+					dirs << path if File.exist?(path)
+				end
+			end
+
+			# load the info of module
+			dirs.each do | path |
 				path 	= "#{path}#{Spath[:modinfo]}"
 				content = Simrb.yaml_read path
 				name	= content[0]["name"]
@@ -46,6 +59,7 @@ module Simrb
 				module_ds[name] = order unless Scfg[:disable_modules].include?(name.to_s)
 			end
 
+			# sort the module by order field
 			res 		= []
 			module_ds	= module_ds.sort_by { |k, v| v }
 			module_ds.each do | item |
@@ -120,7 +134,7 @@ module Simrb
 		:init_module_path		=> [:box, :lang, :schema, :install, :modinfo, :misc, :gemfile, :view, :assets, :readme, :route],
 		:init_root_path			=> [:db_dir, :upload_dir, :backup_dir, :tmp_dir, :log_dir, :module],
 		:environment 			=> 'development',						# or production, test
-		:main_module			=> 'system',
+		:only_enable_modules	=> [],
 		:disable_modules		=> [],
 		:encoding				=> 'utf-8',
 		:lang					=> 'en',
