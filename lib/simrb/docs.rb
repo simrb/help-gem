@@ -71,7 +71,27 @@ Doc
 
 Sdocs['Modularization'] =<<Doc
 
-In Simrb, any functionalities that need to be packed into module, whatever you want to do, three ways to consist of handling it, new a module, or clone a module that has the requirement you want from remote repository, modify existed module at local.
+In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or clone a module that has the requirement you want from remote repository, modify existed module at local.
+
+Here is many modules that considers use from offical repository.
+
+	base - establish the basic element for creating your application
+
+	data - input and process the data that interconnects with database
+
+	view - display the data with any views, like table, form
+
+	menu - create, insert, update menu data
+
+	file - upload file, send file
+
+	user - user login, register, info stored, allow to access certain app
+
+	admin - a dashboard view to administer the data
+
+	var - save variable to database for settings
+
+	tag - mark any datas with tag that let you avoid classified data each time
 Doc
 
 
