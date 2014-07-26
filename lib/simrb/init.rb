@@ -27,8 +27,10 @@ Sload[:view] 		= []
 
 Smodules.each do | name |
 	Sload[:lang] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:lang]}*.#{Scfg[:lang]}"]
-	Sload[:tool] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:box]}*.rb"]
+	Sload[:tool] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:store]}*.rb"]
+	Sload[:tool] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:tool]}*.rb"]
 	Sload[:main] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}/*.rb"]
+	Sload[:main] 	+= Dir["#{Sroot}#{Spath[:module]}#{name}#{Spath[:logic]}*.rb"]
 	Sload[:view]	<< "#{Sroot}#{Spath[:module]}#{name}#{Spath[:view]}".chomp("/")
 end
 
