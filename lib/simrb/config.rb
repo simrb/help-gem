@@ -36,7 +36,7 @@ module Simrb
 			puts "="*30 + "\n" + res + "\n" + "="*30
 		end
 
-		def load_module
+		def module_load
 			dirs 		= []
 			module_ds 	= {}
 
@@ -74,7 +74,7 @@ module Simrb
 			end
 		end
 
-		def is_root_dir?
+		def root_dir_force
 			unless File.exist? 'scfg'
 				Simrb.p "Current command only allow to be used under root directory of project"
 				exit
@@ -204,4 +204,5 @@ if File.exist? 'spath'
 end
 
 # load modules
-Smodules = Simrb.load_module
+Smodules = Simrb.module_load
+

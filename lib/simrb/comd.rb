@@ -77,7 +77,7 @@ module Simrb
 			# 	$ simrb new blog cms test
 			#
 			def new args
-				Simrb.is_root_dir?
+				Simrb.root_dir_force
 
 				args.each do | name |
 					if Smodules.include? name
@@ -120,7 +120,7 @@ module Simrb
 			# 	$ simrb clone simrb/system simrb/test
 			#
 			def clone args
-				Simrb.is_root_dir?
+				Simrb.root_dir_force
 
 				args.each do | name |
 					if Smodules.include? name
