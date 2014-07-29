@@ -87,6 +87,47 @@ module Simrb
 			end
 		end
 
+		# format the input argument from an array to two item, 
+		# first item is orgin array, last is an hash option
+		#
+		# == Example
+		#
+		# 	args, opts = Simrb.format_input ["test", "test2", "--test", "--name=test2", "-n=test3"]
+		#
+		# the above is same as
+		#
+		# 	args, opts = Simrb.format_input ["--test", "test", "test2", "--name=test2", "-n=test3"]
+		# 	
+		# the options that starts with "-" you can write any positions of argument
+		#
+		# output
+		#
+		#	args = ["test", "test2"]
+		#	opts = {test: true, name: test2, n:test3}
+		# 	
+		def format_input args = []
+			resa = [] # return an array
+			resh = {} # return an hash
+			unless args.empty?
+				args.each do | item |
+
+					if item[0] == "-"
+						new_item = item.split("-").uniq.last
+						if new_item.index "="
+							key, val = new_item.split "="
+							resh[key.to_sym] = val
+						else
+							resh[new_item.to_sym] = true
+						end
+					else
+						resa << item
+					end
+
+				end
+			end
+			[resa, resh]
+		end
+
 	end
 
 	# basic path definition
