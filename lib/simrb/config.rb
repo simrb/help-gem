@@ -70,13 +70,7 @@ module Simrb
 
 		def path_init path
 			unless File.exist?(path)
-				if path[-1] == '/'
-					Dir.mkdir(path) 
-				else
-					File.open(path, 'w+') do | f |
-						f.write("")
-					end
-				end
+				path[-1] == '/' ? Dir.mkdir(path) : File.new(path, 'w')
 			end
 		end
 
