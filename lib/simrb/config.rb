@@ -68,9 +68,9 @@ module Simrb
 			res
 		end
 
-		def path_init path
+		def path_init path, content = ""
 			unless File.exist?(path)
-				path[-1] == '/' ? Dir.mkdir(path) : File.new(path, 'w')
+				path[-1] == '/' ? Dir.mkdir(path) : File.open(path, 'w+') {|f| f.write content}
 			end
 		end
 
