@@ -1,6 +1,6 @@
 require 'simrb/config'
 
-Simrb.is_root_dir?
+Simrb.root_dir_force
 
 # increase language block
 class Sl
