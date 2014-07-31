@@ -86,11 +86,11 @@ module Simrb
 		#
 		# == Example
 		#
-		# 	args, opts = Simrb.format_input ["test", "test2", "--test", "--name=test2", "-n=test3"]
+		# 	args, opts = Simrb.input_format ["test", "test2", "--test", "--name=test2", "-n=test3"]
 		#
 		# the above is same as
 		#
-		# 	args, opts = Simrb.format_input ["--test", "test", "test2", "--name=test2", "-n=test3"]
+		# 	args, opts = Simrb.input_format ["--test", "test", "test2", "--name=test2", "-n=test3"]
 		# 	
 		# the options that starts with "-" you can write any positions of argument
 		#
@@ -99,7 +99,7 @@ module Simrb
 		#	args = ["test", "test2"]
 		#	opts = {test: true, name: test2, n:test3}
 		# 	
-		def format_input args = []
+		def input_format args = []
 			resa = [] # return an array
 			resh = {} # return an hash
 			unless args.empty?
