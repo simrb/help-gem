@@ -1,5 +1,10 @@
-module Simrb
+# 
+# the file defines the base functionality of commands
+# that let you initializing a project, create an empty directory of module, or clone
+# from remote repository, show the info of this software version, help document, and so on
+#
 
+module Simrb
 	class Scommand
 
 		def run args = []
@@ -176,6 +181,5 @@ module Simrb
 			end
 
 	end
-
 end
 

@@ -1,3 +1,7 @@
+# 
+# a hooking file that determines what middleware to use
+#
+
 require 'sinatra'
 require 'sequel'
 require 'slim'

@@ -1,3 +1,7 @@
+# 
+# this file stores the base info of this project of the software
+#
+
 module Simrb
 
 	Info 				= 	{

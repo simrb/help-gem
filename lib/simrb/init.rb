@@ -1,3 +1,7 @@
+# 
+# this is a configuration file and loading workflow of application
+#
+
 require 'simrb/config'
 
 Simrb.root_dir_force

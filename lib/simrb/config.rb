@@ -1,5 +1,9 @@
-Sroot = Dir.pwd + '/'
+# 
+# definition to the base methods, and default configuration options
+# and the modules that would be loaded
+#
 
+Sroot = Dir.pwd + '/'
 module Simrb
 
 	# common methods

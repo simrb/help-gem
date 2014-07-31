@@ -1,3 +1,7 @@
+# 
+# this is an entrance to start the web server
+#
+
 require 'simrb/init'
 
 set :run, true

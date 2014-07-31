@@ -1,3 +1,7 @@
+# 
+# a help interface for document
+#
+
 Sdocs = {}
 
 module Simrb
