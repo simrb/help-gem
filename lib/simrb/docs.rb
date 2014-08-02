@@ -75,7 +75,7 @@ Doc
 
 Sdocs['Modularization'] =<<Doc
 
-In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or clone a module that has the requirement you want from remote repository, modify existed module at local.
+In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or get a module that has the requirement you want from remote repository, modify existed module at local.
 
 Here is a core [system](https://github.com/simrb/system) module for common application.
 Doc
@@ -85,14 +85,14 @@ Sdocs['Command-line'] =<<Doc
 
 === Overview
 
-Simrb includes two commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `clone`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by that file *.rb under the boxes dir
+Simrb includes two commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by that file *.rb under the boxes dir
 
 
 === Description of command simrb
 
 init    - initialize a project directory
 new     - create a new module
-clone   - clone a module from remote repository
+get		- get a module from remote repository
 help    - show the help documentation
 info    - show the information of current version of Simrb
 start   - boot Simrb up via web server mode
@@ -135,17 +135,17 @@ Example 2, new module more than one at the same time
 	$ simrb new test test2 test3
 
 
-clone
+get
 ==================
 Command format:
 
-	$ simrb clone [repo_name/module_name] [repo_name/module_name2] [repo_name/module_name3] ...
+	$ simrb get [repo_name/module_name] [repo_name/module_name2] [repo_name/module_name3] ...
 
 its usage is as same as the new command, but just get the module from remote repository.
 
 Example 1
 
-	$ simrb clone repos_name/module_name repos_name2/module_name2
+	$ simrb get repos_name/module_name repos_name2/module_name2
 
 
 help
