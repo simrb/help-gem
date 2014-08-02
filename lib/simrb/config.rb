@@ -57,10 +57,14 @@ module Simrb
 			# load the info of module
 			dirs.each do | path |
 				path 	= "#{path}#{Spath[:modinfo]}"
-				content = Simrb.yaml_read path
-				name	= content[0]["name"]
-				order	= (content[0]["order"] || 99)
-				module_ds[name] = order unless Scfg[:disable_modules].include?(name.to_s)
+				res 	= Simrb.yaml_read path
+				if name	= res[0]["name"]
+					order			= (res[0]["order"] || 99)
+					module_ds[name] = order unless Scfg[:disable_modules].include?(name.to_s)
+				else
+					p "The module info cause error, please check #{path}"
+					exit
+				end
 			end
 
 			# sort the module by order field
