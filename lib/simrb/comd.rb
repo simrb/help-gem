@@ -181,6 +181,21 @@ module Simrb
 				@output << Simrb.help(args)
 			end
 
+			# add a command shortcut to bashrc file
+			#
+			# == Example
+			#
+			#       $ simrb bash
+			#
+			# so, you can start the web server by command
+			#
+			#       $ 3ss
+			#
+			def bash args = []
+				`echo 'alias 3ss="simrb start"' >> ~/.bashrc`
+				`source ~/.bashrc`
+			end
+
 	end
 end
 
