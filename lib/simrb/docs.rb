@@ -85,14 +85,14 @@ Sdocs['Command-line'] =<<Doc
 
 === Overview
 
-Simrb includes two commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by that file *.rb under the boxes dir
+Simrb includes many commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by the file *.rb that is under the boxes dir.
 
 
 === Description of command simrb
 
 init    - initialize a project directory
 new     - create a new module
-get		- get a module from remote repository
+get     - get a module from remote repository
 help    - show the help documentation
 info    - show the information of current version of Simrb
 start   - boot Simrb up via web server mode
