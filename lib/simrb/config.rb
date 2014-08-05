@@ -23,7 +23,7 @@ module Simrb
 			end
 		end
 
-		def p args
+		def p args, out = nil
 			res = ""
 
 			if args.class.to_s == 'Array'
@@ -38,6 +38,7 @@ module Simrb
 			end
 
 			puts "="*30 + "\n" + res + "\n" + "="*30
+			exit unless out
 		end
 
 		def module_load
@@ -62,8 +63,7 @@ module Simrb
 					order			= (res[0]["order"] || 99)
 					module_ds[name] = order unless Scfg[:disable_modules].include?(name.to_s)
 				else
-					p "The module info cause error, please check #{path}"
-					exit
+					Simrb.p "The module info cause error, please check #{path}", :exit
 				end
 			end
 
@@ -84,8 +84,7 @@ module Simrb
 
 		def root_dir_force
 			unless File.exist? 'scfg'
-				Simrb.p "Current command only allow to be used under root directory of project"
-				exit
+				Simrb.p "Current command only allow to be used under root directory of project", :exit
 			end
 		end
 
