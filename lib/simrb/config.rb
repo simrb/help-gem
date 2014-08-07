@@ -38,7 +38,7 @@ module Simrb
 			end
 
 			puts "="*30 + "\n" + res + "\n" + "="*30
-			exit unless out
+			exit if out
 		end
 
 		def module_load
