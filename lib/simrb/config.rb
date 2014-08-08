@@ -88,40 +88,37 @@ module Simrb
 			end
 		end
 
-		# format the input arguments as an new array as the result that includs many options,
-		# first item is orgin array without '-', others is an hash option that starts with '-'
+		# format the input argument from an array to two item, 
+		# first item is orgin array, last is an hash option
 		#
 		# == Example
 		#
-		# 	args, opt1 = Simrb.input_format ["test", "test2", "--test", "--name=test2", "-n=test3"]
+		# 	args, opts = Simrb.input_format ["test", "test2", "--test", "--name=test2", "-n=test3"]
 		#
 		# the above is same as
 		#
-		# 	args, opt1, opt2 = Simrb.input_format ["--test", "test", "test2", "--name=test2", "-n=test3"]
+		# 	args, opts = Simrb.input_format ["--test", "test", "test2", "--name=test2", "-n=test3"]
+		# 	
+		# the options that starts with "-" you can write any positions of argument
 		#
 		# output
 		#
 		#	args = ["test", "test2"]
-		#	opt1 = {n:test3}
-		#	opt2 = {test: true, name: test2}
-		#	...
+		#	opts = {test: true, name: test2, n:test3}
 		# 	
 		def input_format args = []
 			resa = [] # return an array
 			resh = {} # return an hash
-
 			unless args.empty?
 				args.each do | item |
 
-					count = item.count "-"
-					if count > 0
-						resh[count] ||= {}
+					if item[0] == "-"
 						new_item = item.split("-").uniq.last
 						if new_item.index "="
 							key, val = new_item.split "="
-							resh[count][key.to_sym] = val
+							resh[key.to_sym] = val
 						else
-							resh[count][new_item.to_sym] = true
+							resh[new_item.to_sym] = true
 						end
 					else
 						resa << item
@@ -129,9 +126,7 @@ module Simrb
 
 				end
 			end
-
-			resh = resh.sort_by {|k, v| k}.to_h
-			(resh.values).unshift resa
+			[resa, resh]
 		end
 
 	end
