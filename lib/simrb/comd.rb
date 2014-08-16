@@ -42,7 +42,7 @@ module Simrb
 
 				Scfg[:init_root_path].each do | item |
 					path = "#{Spath[item]}"
-					Simrb::path_init path
+					Simrb.path_write path
 				end
 
 				# initialize scfg file
@@ -89,14 +89,14 @@ module Simrb
 						@output << "The module #{name} is existing, not new it"
 					else
 						# create root dir of module
-						Simrb::path_init "#{Spath[:module]}#{name}/"
+						Simrb.path_write "#{Spath[:module]}#{name}/"
 
 						Dir.chdir "."
 
 						# create sub dir of module 
 						Scfg[:init_module_path].each do | item |
 							path = "#{Spath[:module]}#{name}#{Spath[item]}"
-							Simrb::path_init path
+							Simrb.path_write path
 						end
 
 						# write the content of module info
