@@ -37,7 +37,8 @@ module Simrb
 				res = args.to_s
 			end
 
-			puts "="*30 + "\n" + res + "\n" + "="*30
+# 			puts "="*30 + "\n" + res + "\n" + "="*30
+			puts res
 			exit if out
 		end
 

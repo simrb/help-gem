@@ -58,4 +58,4 @@ else
 
 end
 
-Simrb.p output
+Simrb.p(output + "\n")
