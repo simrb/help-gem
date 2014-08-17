@@ -31,9 +31,9 @@ if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
 	env = {'PATH_INFO' => "/_tools", 'REQUEST_METHOD' => 'GET', 'rack.input' => ''}
 	status, type, body = Sinatra::Application.call env
 	if status == 200
-		body.each do | line |
-			output << line
-		end
+# 		body.each do | line |
+# 			output << line
+# 		end
 	else
 		File.open(Spath[:command_log], 'a+') do | f |
 			f.write "\n#{'='*10}#{Time.now.to_s}\n#{'='*10}\n"
