@@ -77,11 +77,11 @@ module Simrb
 			res
 		end
 
-		def path_write path, content = "", mode = "w+"
+		def path_write path, content = "", mode = "a+"
 			if File.exist?(path)
-				File.open(path, mode){|f| f.write content}
+				File.open(path, mode){|f| f.write content} if mode
 			else
-				path[-1] == '/' ? Dir.mkdir(path) : File.open(path, mode){|f| f.write content}
+				path[-1] == '/' ? Dir.mkdir(path) : File.open(path, "w+"){|f| f.write content}
 			end
 		end
 

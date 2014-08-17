@@ -2,6 +2,7 @@
 # this is an entrance for running the task command in tool box
 #
 
+puts "="*30
 require 'simrb/init'
 
 module Simrb
@@ -58,4 +59,5 @@ else
 
 end
 
-Simrb.p(output + "\n")
+Simrb.p output
+puts "="*30
