@@ -43,36 +43,37 @@ module Simrb
 		end
 
 		def module_load
-			dirs 		= []
+			module_dirs = {}
 			module_ds 	= {}
 
-			# get the path of module
-			if Scfg[:only_enable_modules].empty?
-				dirs = Dir["#{Spath[:module]}*"]
-			else
-				Scfg[:only_enable_modules].each do | name |
-					path = "#{Spath[:module]}#{name}"
-					dirs << path if File.exist?(path)
-				end
+			# load modules from local repository
+			Dir["#{Spath[:repo_local]}*"].each do | path |
+				name = path.split("/").last
+				module_dirs[name] = File.expand_path("#{Spath[:repo_local]}#{name}") if Scfg[:require_modules].include? name
+			end
+
+			# load modules from project directory
+			Dir["#{Spath[:module]}*"].each do | path |
+				name = path.split("/").last
+				module_dirs[name] = File.expand_path("#{Spath[:module]}#{name}") unless Scfg[:disable_modules].include? name
 			end
 
 			# load the info of module
-			dirs.each do | path |
+			module_dirs.each do | name, path |
 				path 	= "#{path}#{Spath[:modinfo]}"
 				res 	= Simrb.yaml_read path
-				if name	= res[0]["name"]
-					order			= (res[0]["order"] || 99)
-					module_ds[name] = order unless Scfg[:disable_modules].include?(name.to_s)
+				if res[0]["name"] == name
+					module_ds[name] = (res[0]["order"] || 99)
 				else
-					Simrb.p "The module info cause error, please check #{path}", :exit
+					Simrb.p "Loading error to the module info, please check #{path}", :exit
 				end
 			end
 
-			# sort the module by order field
-			res 		= []
+			# sort module by order field of module
+			res 		= {}
 			module_ds	= module_ds.sort_by { |k, v| v }
-			module_ds.each do | item |
-				res << item[0]
+			module_ds.each do | name, order |
+				res[name] = module_dirs[name]
 			end
 			res
 		end
@@ -144,6 +145,8 @@ module Simrb
 
 	# basic path definition
 	Spath						= {
+		:repo_local				=> File.expand_path("~/.simrb/modules/"),
+
 		# root path of project
 		:module					=> 'modules/',
 		:public					=> 'public/',
@@ -183,18 +186,37 @@ module Simrb
 		:time_types				=> ['created', 'changed'],
 		:fixnum_types			=> ['order', 'level'],
 		:number_types 			=> ['Fixnum', 'Integer', 'Float'],
-		:field_alias			=> {int:'Fixnum', str:'String', text:'Text', time:'Time', big:'Bignum', fl:'Float'},
-		:init_module_path		=> [:store, :lang, :schema, :install, :modinfo, :misc, :gemfile, :view, :assets, :readme, :route],
-		:init_root_path			=> [:db_dir, :upload_dir, :backup_dir, :tmp_dir, :log_dir, :module],
-		:environment 			=> 'development',						# or production, test
-		:only_enable_modules	=> [],
+
+		:field_alias			=> {
+			int:'Fixnum', str:'String', text:'Text',
+			time:'Time', big:'Bignum', fl:'Float'
+		},
+
+		:init_module_path		=> [
+			:store, :lang, :schema, :install, :modinfo, :misc, 
+			:gemfile, :view, :assets, :readme, :route
+		],
+
+		:init_root_path			=> [
+			:db_dir, :upload_dir, :backup_dir, 
+			:tmp_dir, :log_dir, :module
+		],
+
+		# options: development, production, test
+		:environment 			=> 'development',
+
+		# disable the modules of current project
 		:disable_modules		=> [],
+
+		# require the modules of local repository
+		:require_modules		=> ["system"],
+
 		:encoding				=> 'utf-8',
 		:lang					=> 'en',
 		:install_lock			=> 'yes',
 		:db_connection			=> 'sqlite://db/data.db',
 		:server_log_mode		=> 'file',
-		:repo_source			=> 'https://github.com/',
+		:repo_remote			=> 'https://github.com/',
 		:server 				=> 'thin',
 		:bind 					=> '0.0.0.0',
 		:port					=> 3000,

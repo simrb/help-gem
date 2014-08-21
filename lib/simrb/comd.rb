@@ -85,7 +85,7 @@ module Simrb
 				Simrb.root_dir_force
 
 				args.each do | name |
-					if Smodules.include? name
+					if Smodules.keys.include? name
 						@output << "The module #{name} is existing, not new it"
 					else
 						# create root dir of module
@@ -129,10 +129,10 @@ module Simrb
 				Simrb.root_dir_force
 
 				args.each do | name |
-					if Smodules.include? name
+					if Smodules.keys.include? name
 						@output << "The module #{name} is existing at local, hasn't got from remote"
 					else
-						path = "#{Scfg[:repo_source]}#{name[0]}.git"
+						path = "#{Scfg[:repo_remote]}#{name[0]}.git"
 						name = "#{Spath[:module]}#{name[0].split('/').last}"
 						system("git clone #{path} #{name}")
 					end
