@@ -8,15 +8,14 @@ module Simrb
 	class Scommand
 
 		def run args = []
-			@output = []
-			cmd 	= args.empty? ? '' : args.shift
+			cmd = args.empty? ? '' : args.shift
 			if Scommand.private_method_defined? cmd
 				self.send(cmd, args)
+			elsif cmd == "help"
+				help args
 			else
-				@output << ">> WARNING: No #{cmd} command found >>"
-				help
+				puts "No command called #{cmd}, please try ==> $ simrb help"
 			end
-			Simrb.p(@output.empty? ? 'Implemented complete' : @output)
 		end
 
 		private
@@ -68,7 +67,7 @@ module Simrb
 # 				end
 # 				system("bundle install --gemfile=#{@app_name}/apps/#{@module_name}#{@gemfile_path} --without=#{mode}")
 
-				@output << "Initialized project complete"
+				puts "Initialized project complete"
 			end
 
 			# create a module, initialize default paths of file and directory
@@ -86,7 +85,7 @@ module Simrb
 
 				args.each do | name |
 					if Smodules.keys.include? name
-						@output << "The module #{name} is existing, not new it"
+						puts "The module #{name} is existing, not new it"
 					else
 						# create root dir of module
 						Simrb.path_write "#{Spath[:module]}#{name}/"
@@ -111,7 +110,7 @@ module Simrb
 					end
 				end
 
-				@output << "Initialized module complete"
+				puts "Initialized module complete"
 			end
 
 			# get a module from remote repository to local
@@ -130,15 +129,15 @@ module Simrb
 
 				args.each do | name |
 					if Smodules.keys.include? name
-						@output << "The module #{name} is existing at local, hasn't got from remote"
+						puts "The module #{name} is existing at local, hasn't got from remote"
 					else
 						path = "#{Scfg[:repo_remote]}#{name[0]}.git"
 						name = "#{Spath[:module]}#{name[0].split('/').last}"
-						system("git clone #{path} #{name}")
+						system("git clone #{path} #{Spath[:repo_local]}")
 					end
 				end
 
-				@output << "Cloned module complete"
+				puts "Cloned module complete"
 			end
 
 			# kill the current process of Simrb of that is running in background
@@ -154,7 +153,7 @@ module Simrb
 # 				`rm #{Spath[:tmp_dir]}pid`
 
 				system("kill #{s}")
-				@output << "Killed the process #{s} of Simrb"
+				puts "Killed the process #{s} of Simrb"
 			end
 
 			# display the basic inforamtion of current version of Simrb
@@ -165,7 +164,7 @@ module Simrb
 			#
 			def info args = []
 				require 'simrb/info'
-				@output << Simrb::Info
+				Simrb.p Simrb::Info
 			end
 
 			# the help document
@@ -176,9 +175,30 @@ module Simrb
 			# 	$ simrb help 0
 			#
 			def help args = []
-				require 'simrb/help'
 				require 'simrb/docs'
-				@output << Simrb.help(args)
+
+				res 		= []
+				i 			= 0
+				docs_key 	= {}
+				docs_val 	= {}
+				Sdocs.each do | key, val |
+					docs_key[i] = key
+					docs_val[i] = val
+					i = i + 1
+				end
+
+				if args.empty?
+					res << 'please select the number before the list to see detials'
+					docs_key.each do | i, key |
+						res << "#{i.to_s}, #{key}"
+					end
+				else
+					args.each do | i |
+						res << (docs_val.include?(i.to_i) ? docs_val[i.to_i] : 'no document')
+					end
+				end
+
+				Simrb.p res
 			end
 
 	end

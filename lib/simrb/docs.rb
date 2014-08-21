@@ -2,8 +2,8 @@
 # all of help documents is wrote here
 #
 
+Sdocs = {}
 Sdocs['Preface'] =<<Doc
-
 === What about the Simrb ?
 
 Simrb is a framework for building server application. Many years ago, i had tried to find an application to do work of that i want to build something that could be used to run at server, and support the web service, web page, json data, xml data, and varied formats of data.
@@ -14,12 +14,10 @@ The importance things in using is need to be simple, flexible, comfortable. I co
 === What responsibility Simrb does ?
 
 Defining the directory architecture, basic command-line, configuration option, initialize loading workflow, that is all.
-
 Doc
 
 
 Sdocs['Directory'] =<<Doc
-
 /home/project
 ├── modules
 │   ├── module_name1
@@ -65,28 +63,22 @@ Sdocs['Directory'] =<<Doc
 ├── tmp
 │   └── install.lock
 └── scfg                                   put any options of static configuration here with an hash form
-
 Doc
 
 
 Sdocs['Configuration'] =<<Doc
-
 Simrb has two configuration files that is scfg and spath under the root directory, spath stores all of paths of default directory and file, and the scfg file is for setting options to your project application.
-
 Doc
 
 
 Sdocs['Modularization'] =<<Doc
-
 In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or get a module that has the requirement you want from remote repository, modify existed module at local.
 
 Here is a core [system](https://github.com/simrb/system) module for common application.
-
 Doc
 
 
 Sdocs['Command-line'] =<<Doc
-
 === Overview
 
 Simrb includes many commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by the file *.rb that is under the boxes dir.
@@ -183,12 +175,10 @@ kill
 Command format:
 
 	$ simrb kill
-
 Doc
 
 
 Sdocs['Hello World'] =<<Doc
-
 When it finished installing at once, you can cook yourself by a `Hello World` demo.
 
 Step 01, create a project directory called myapp
@@ -209,5 +199,4 @@ Step 04, start up by web server to see what we have done
 
 So, open browser and type the link http://0.0.0.0:3000 to address bar,
 yup, if you see the Hello world is there, welcome you fall in Simrb.
-
 Doc

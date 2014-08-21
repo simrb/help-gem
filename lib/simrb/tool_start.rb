@@ -14,7 +14,7 @@ Sload[:tool].each do | path |
 	require path
 end
 argv = ARGV.clone
-output = []
+# output = []
 
 # command mode
 if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
@@ -40,7 +40,8 @@ if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
 # 			f.write body
  			f.write (Sinatra::ShowExceptions.new(self).call(env.merge("HTTP_USER_AGENT" => "curl"))[2][0].to_s + "\n")
 		end
-		output << env["sinatra.error"]
+# 		output << env["sinatra.error"]
+		puts env["sinatra.error"]
 	end
 
 # document mode
@@ -54,10 +55,9 @@ else
 		end
 	end
 
-	argv.shift 1 
-	output << Simrb.help(argv)
+	argv.shift 1
+	puts Simrb.help(argv)
 
 end
 
-Simrb.p output
 puts "="*30
