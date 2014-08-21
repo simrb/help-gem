@@ -127,17 +127,18 @@ module Simrb
 			def get args
 				Simrb.root_dir_force
 
-				args.each do | name |
+				args.each do | all_name |
+					name = all_name.split('/').last
 					if Smodules.keys.include? name
-						puts "The module #{name} is existing at local, hasn't got from remote"
+						puts "The module #{name} is existing at local repository, hasn't got from remote"
 					else
-						path = "#{Scfg[:repo_remote]}#{name[0]}.git"
-						name = "#{Spath[:module]}#{name[0].split('/').last}"
-						system("git clone #{path} #{Spath[:repo_local]}")
+						path	= "#{Scfg[:repo_remote]}#{all_name}.git"
+						local	= "#{Spath[:repo_local]}#{name}"
+						system("git clone #{path} #{local}")
 					end
 				end
 
-				puts "Cloned module complete"
+				puts "Implemented complete"
 			end
 
 			# kill the current process of Simrb of that is running in background
