@@ -42,6 +42,22 @@ module Simrb
 			exit if out
 		end
 
+		# return an hash that stores the modules that consists of local directory and repository
+		#
+		# == Example
+		#
+		# 	Simrb.module_load
+		#
+		# assuming the :requrie_module option of Scfg file that is set as 'system', 
+		# and two modules demo, demo2 in your local directory of project,
+		# so, the result as below
+		#
+		# 	{
+		# 		'system'	=>	'/your_repo_dir/system',
+		# 		'demo'		=>	'/your_project_dir/modules/demo',
+		# 		'demo2'		=>	'/your_project_dir/modules/demo2',
+		# 	}
+		#
 		def module_load
 			module_dirs = {}
 			module_ds 	= {}

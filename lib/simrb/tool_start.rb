@@ -18,7 +18,7 @@ argv = ARGV.clone
 
 # command mode
 if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
-	
+
 	helpers do
 		include Simrb::Stool
 	end
