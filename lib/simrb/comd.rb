@@ -126,6 +126,7 @@ module Simrb
 			#
 			def get args
 				Simrb.root_dir_force
+				Simrb.path_write(Spath[:repo_local]) unless File.exist?(Spath[:repo_local])
 
 				args.each do | all_name |
 					name = all_name.split('/').last

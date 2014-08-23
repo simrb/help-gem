@@ -94,6 +94,25 @@ module Simrb
 			res
 		end
 
+		# initialize a path what it is a dir or file
+		#
+		# == Example
+		#
+		# new a file, or with the additional content
+		#
+		# 	path_write "myfile"
+		# 	path_write "myfile", "file content"
+		# 	path_write "myfile", "file content", "w+"
+		#
+		# create the dir
+		#
+		#	path_write "newdir/"
+		#	path_write "newdir/newdir2/"
+		#
+		# create the dir and file at the same time
+		#
+		#	path_write "newdir/newdir2/myfile"
+		#
 		def path_write path, content = "", mode = "a+"
 			if File.exist?(path)
 				File.open(path, mode){|f| f.write content} if mode
