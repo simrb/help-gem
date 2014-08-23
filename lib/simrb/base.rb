@@ -98,13 +98,12 @@ module Simrb
 			if File.exist?(path)
 				File.open(path, mode){|f| f.write content} if mode
 			else
-				if path[-1] == '/'
-					Dir.mkdir(path)
-				else
-					begin
-						File.open(path, "w+"){|f| f.write content}
-					rescue
-						Simrb.p "Created failure, please verify the dir #{path.split('/')[0..-2].join('/')} that has existed yet", :exit
+				arrs	= path.split('/')
+				count	= arrs.count - 1
+				(0..count).each do | i |
+					new_path = arrs[0..i].join("/")
+					unless File.exist? new_path
+						new_path == path ? File.open(path, mode){|f| f.write content} : Dir.mkdir(new_path)
 					end
 				end
 			end
