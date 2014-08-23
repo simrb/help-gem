@@ -94,7 +94,7 @@ module Simrb
 			res
 		end
 
-		# initialize a path what it is a dir or file
+		# initialize a path whatever it is a dir or file
 		#
 		# == Example
 		#
