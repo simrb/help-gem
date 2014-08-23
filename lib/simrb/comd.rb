@@ -67,7 +67,7 @@ module Simrb
 # 				end
 # 				system("bundle install --gemfile=#{@app_name}/apps/#{@module_name}#{@gemfile_path} --without=#{mode}")
 
-				puts "Initialized project complete"
+				puts "Initialized project completion"
 			end
 
 			# create a module, initialize default paths of file and directory
@@ -110,7 +110,7 @@ module Simrb
 					end
 				end
 
-				puts "Initialized module complete"
+				puts "Initialized module completion"
 			end
 
 			# get a module from remote repository to local
@@ -138,7 +138,7 @@ module Simrb
 					end
 				end
 
-				puts "Implemented complete"
+				puts "Implemented completion"
 			end
 
 			# kill the current process of Simrb of that is running in background
