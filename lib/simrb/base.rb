@@ -74,6 +74,13 @@ module Simrb
 				module_dirs[name] = File.expand_path("#{Spath[:module]}#{name}") unless Scfg[:disable_modules].include? name
 			end
 
+			# check the required module that is existing ?
+			Scfg[:require_modules].each do | name |
+				unless module_dirs.include? name
+					puts "Warning: the required module #{name} is not existing, wherever in local dir or repository"
+				end
+			end
+
 			# load the info of module
 			module_dirs.each do | name, path |
 				path 	= "#{path}#{Spath[:modinfo]}"
