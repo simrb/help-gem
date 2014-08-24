@@ -85,7 +85,7 @@ module Simrb
 
 				args.each do | name |
 					if Smodules.keys.include? name
-						puts "The module #{name} is existing, not new it"
+						puts "The module #{name} is existing, hasn't new it"
 					else
 						# create root dir of module
 						Simrb.path_write "#{Spath[:module]}#{name}/"
