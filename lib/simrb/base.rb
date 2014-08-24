@@ -226,16 +226,6 @@ module Simrb
 			time:'Time', big:'Bignum', fl:'Float'
 		},
 
-		:init_module_path		=> [
-			:store, :lang, :schema, :install, :modinfo, :misc, 
-			:gemfile, :view, :assets, :readme, :route
-		],
-
-		:init_root_path			=> [
-			:db_dir, :upload_dir, :backup_dir, 
-			:tmp_dir, :log_dir, :module
-		],
-
 		# options: development, production, test
 		:environment 			=> 'development',
 
@@ -254,6 +244,21 @@ module Simrb
 		:server 				=> 'thin',
 		:bind 					=> '0.0.0.0',
 		:port					=> 3000,
+
+		:init_module_path		=> [
+			:store, :lang, :schema, :install, :modinfo, :misc, 
+			:gemfile, :view, :assets, :readme, :route
+		],
+
+		:init_root_path			=> [
+			:db_dir, :upload_dir, :backup_dir, 
+			:tmp_dir, :log_dir, :module, :repo_local
+		],
+
+		:init_module_field		=> { 'name' => 'unname', 'author' => 'unknown', 'version' => '1.0.0' },
+
+		:init_gitinore_item		=> ["*.swp", "*.gem", "*~", "*.lock"],
+
 		:init_scfg_item			=> [:lang, :db_connection, :environment, :bind, :port],
 	}
 

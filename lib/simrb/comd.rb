@@ -99,13 +99,13 @@ module Simrb
 						end
 
 						# write the content of module info
-						text = [{ 'name' => name, 'author' => 'unknown', 'version' => '1.0.0' }]
-						Simrb.yaml_write "#{Spath[:module]}#{name}#{Spath[:modinfo]}", text
+						res = Scfg[:init_module_field].merge({'name' => name})
+						Simrb.yaml_write "#{Spath[:module]}#{name}#{Spath[:modinfo]}", [res]
 
 						# write the content of .gitignore
 						path = "#{Spath[:module]}#{name}#{Spath[:gitignore]}"
 						File.open(path, "w+") do | f |
-							f.write "*.swp\n*.gem\n*~"
+							f.write Scfg[:init_gitinore_item].join("\n")
 						end
 					end
 				end
