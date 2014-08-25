@@ -210,8 +210,6 @@ module Simrb
 		:schema					=> '/boxes/migrations/',
 		:install				=> '/boxes/installs/',
 		:modinfo				=> '/boxes/installs/_mods',
-		:vars					=> '/boxes/installs/_vars',
-		:menu					=> '/boxes/installs/_menu',
 		:tpl					=> '/boxes/tpls/',
 		:misc					=> '/boxes/misc/',
 		:gemfile				=> '/boxes/misc/Gemfile',
