@@ -29,7 +29,7 @@ Sload[:main] 		= []
 Sload[:tool] 		= []
 Sload[:view] 		= []
 
-Smodules.each do | name, path |
+Smods.each do | name, path |
 	Sload[:lang] 	+= Dir["#{path}#{Spath[:lang]}*.#{Scfg[:lang]}"]
 	Sload[:tool] 	+= Dir["#{path}#{Spath[:store]}*.rb"]
 	Sload[:tool] 	+= Dir["#{path}#{Spath[:tool]}*.rb"]

@@ -84,7 +84,7 @@ module Simrb
 				Simrb.root_dir_force
 
 				args.each do | name |
-					if Smodules.keys.include? name
+					if Smods.keys.include? name
 						puts "The module #{name} is existing, hasn't new it"
 					else
 						# create root dir of module
@@ -130,7 +130,7 @@ module Simrb
 
 				args.each do | all_name |
 					name = all_name.split('/').last
-					if Smodules.keys.include? name
+					if Smods.keys.include? name
 						puts "The module #{name} is existing at local repository, hasn't got from remote"
 					else
 						path	= "#{Scfg[:repo_remote]}#{all_name}.git"

@@ -286,5 +286,5 @@ if File.exist? 'spath'
 end
 
 # load modules
-Smodules = Simrb.module_load
+Smods = Simrb.module_load
 

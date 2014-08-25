@@ -49,7 +49,7 @@ else
 
 	require 'simrb/help'
 
-	Smodules.each do | name, path |
+	Smods.each do | name, path |
 		Dir["#{path}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path2 |
 			require(path2)
 		end
