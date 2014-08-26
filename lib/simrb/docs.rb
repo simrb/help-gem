@@ -21,7 +21,7 @@ Sdocs['Directory'] =<<Doc
 /home/project
 ├── modules
 │   ├── module_name1
-│   │   ├── boxes                      ───│ ---- DATA LAYER ----
+│   │   ├── store                      ───│ ---- DATA LAYER ----
 │   │   │   ├── docs                      │ stores the documents
 │   │   │   ├── tpls                      │ stores the templates, like *.erb
 │   │   │   ├── migrations                │ stores the migration records
@@ -81,7 +81,7 @@ Doc
 Sdocs['Command-line'] =<<Doc
 === Overview
 
-Simrb includes many commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by the file *.rb that is under the boxes dir.
+Simrb includes many commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by the file *.rb that is under the store dir.
 
 
 === Description of command simrb
