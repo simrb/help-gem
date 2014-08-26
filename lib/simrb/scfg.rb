@@ -46,6 +46,11 @@ Scfg						= {
 		time:'Time', big:'Bignum', fl:'Float'
 	},
 
+	# the aliases of generating methods
+	:g_alias				=> {
+		'm' => 'migration', 'i' => 'install', 'd' => 'data', 'v' => 'view'
+	},
+
 	# options: development, production, test
 	:environment 			=> 'development',
 
