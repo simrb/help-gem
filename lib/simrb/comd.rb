@@ -126,15 +126,15 @@ module Simrb
 			#
 			def get args
 				Simrb.root_dir_force
-				Simrb.path_write(Spath[:repo_local]) unless File.exist?(Spath[:repo_local])
+				Simrb.path_write(Spath[:repo_dir]) unless File.exist?(Spath[:repo_dir])
 
 				args.each do | all_name |
 					name = all_name.split('/').last
 					if Smods.keys.include? name
 						puts "The module #{name} is existing at local repository, hasn't got from remote"
 					else
-						path	= "#{Scfg[:repo_remote]}#{all_name}.git"
-						local	= "#{Spath[:repo_local]}#{name}"
+						path	= "#{Scfg[:source]}#{all_name}.git"
+						local	= "#{Spath[:repo_dir]}#{name}"
 						system("git clone #{path} #{local}")
 					end
 				end

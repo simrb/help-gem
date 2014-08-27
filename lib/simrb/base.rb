@@ -64,19 +64,19 @@ module Simrb
 			module_ds 	= {}
 
 			# load modules from local repository
-			Dir["#{Spath[:repo_local]}*"].each do | path |
+			Dir["#{Spath[:repo_dir]}*"].each do | path |
 				name = path.split("/").last
-				module_dirs[name] = File.expand_path("#{Spath[:repo_local]}#{name}") if Scfg[:require_modules].include? name
+				module_dirs[name] = File.expand_path("#{Spath[:repo_dir]}#{name}") if Scfg[:module_require].include? name
 			end
 
 			# load modules from project directory
 			Dir["#{Spath[:module]}*"].each do | path |
 				name = path.split("/").last
-				module_dirs[name] = File.expand_path("#{Spath[:module]}#{name}") unless Scfg[:disable_modules].include? name
+				module_dirs[name] = File.expand_path("#{Spath[:module]}#{name}") unless Scfg[:module_disable].include? name
 			end
 
 			# check the required module that is existing ?
-			Scfg[:require_modules].each do | name |
+			Scfg[:module_require].each do | name |
 				unless module_dirs.include? name
 					puts "Warning: the required module #{name} is not existing, wherever in local dir or repository"
 				end
