@@ -75,13 +75,6 @@ module Simrb
 				module_dirs[name] = File.expand_path("#{Spath[:module]}#{name}") unless Scfg[:module_disable].include? name
 			end
 
-			# check the required module that is existing ?
-			Scfg[:module_require].each do | name |
-				unless module_dirs.include? name
-					puts "Warning: the required module #{name} is not existing, wherever in local dir or repository"
-				end
-			end
-
 			# load the info of module
 			module_dirs.each do | name, path |
 				path 	= "#{path}#{Spath[:modinfo]}"
@@ -137,6 +130,14 @@ module Simrb
 		end
 
 		def root_dir_force
+			# check the required module is that existing
+			Scfg[:module_require].each do | name |
+				unless Smods.keys.include? name
+					puts "Warning: the required module #{name} is not existing, wherever in local dir or repository"
+				end
+			end
+
+			# check the file that is necessary to be loaded
 			unless File.exist? 'scfg'
 				Simrb.p "Current command only allow to be used under root directory of project", :exit
 			end

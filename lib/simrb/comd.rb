@@ -21,7 +21,7 @@ module Simrb
 			elsif cmd == "help"
 				help args
 			else
-				puts "No command called #{cmd}, please try ==> $ simrb help"
+				puts "No command called #{cmd}, please try `$ simrb help`"
 			end
 		end
 
