@@ -7,6 +7,13 @@
 module Simrb
 	class Scommand
 
+		# run the command
+		#
+		# == Example
+		#
+		# sapp = Simrb::Scommand.new
+		# sapp.run ARGV
+		#
 		def run args = []
 			cmd = args.empty? ? '' : args.shift
 			if Scommand.private_method_defined? cmd

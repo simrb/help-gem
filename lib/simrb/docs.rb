@@ -4,54 +4,65 @@
 
 Sdocs = {}
 Sdocs['Preface'] =<<Doc
-=== What about the Simrb ?
 
-Simrb is a framework for building server application. Many years ago, i had tried to find an application to do work of that i want to build something that could be used to run at server, and support the web service, web page, json data, xml data, and varied formats of data.
+== What is the Simrb ?
 
-The importance things in using is need to be simple, flexible, comfortable. I couldn't find it, So this is the reason why would i build this software called Simrb.
+Simrb is a framework for building server application. Many years ago, i had tried to find an application to do the work that easily create app by providing various data with various forms, like web page, json, xml, etc.
+
+The important thing of using is that needs to be simple, comfortable. Unfortunately, nothing i found, so this is why would exists simrb today.
 
 
-=== What responsibility Simrb does ?
+== What's the thing Simrb will implements ?
 
-Defining the directory architecture, basic command-line, configuration option, initialize loading workflow, that is all.
+For the purpose of origin, we make the definition to Simrb, whatever the things we do, that need to be rounded it. The opinions as following,
+
+	defining the directory architecture
+	defining the basic command-line
+	initializing the configuration option
+	initializing the loading workflow
+
 Doc
 
 
 Sdocs['Directory'] =<<Doc
+
 /home/project
 ├── modules
 │   ├── module_name1
-│   │   ├── store                      ───│ ---- DATA LAYER ----
-│   │   │   ├── docs                      │ stores the documents
-│   │   │   ├── tpls                      │ stores the templates, like *.erb
-│   │   │   ├── migrations                │ stores the migration records
-│   │   │   ├── langs                     │ stores the language file, *.en, *.de, *.cn, etc
-│   │   │   │   ├── name.en               │ 
-│   │   │   │   └── name.cn               │
-│   │   │   ├── misc                      │ stores the Gemfile, Gemfile.lock, and others
-│   │   │   │   └── Gemfile               │
-│   │   │   ├── installs                  │ stores the installing file that will be write into database, by
-│   │   │   │   └── _mods                 │ the file name as the table name
-│   │   │   ├── tool.rb                   │ these files will be loaded in command `$ 3s`
-│   │   │   └── ...                       │
-│   │   ├── views                      ───│ ---- VIEW LAYER ----
-│   │   │    ├── assets                   │ assets dir stores the file *.js, *.css, *.jpg, *.png, etc
-│   │   │    │   ├── jqeury.js            │
-│   │   │    │   └── style.css            │
-│   │   │    ├── temp.slim                │ here is stored the template files that will be loaded
-│   │   │    ├── demo.slim                │ when the route file need it
-│   │   │    ├── demo2.slim               │ 
-│   │   │    └── ...                      │ 
-│   │   ├── README.md                  ───│ ---- LOGIC LAYER ----
-│   │   ├── .gitignore                    │ 
-│   │   ├── routes.rb                     │ any files with suffix `rb`, like routes.rb, all will be loaded in
-│   │   ├── demo.rb                       │ startup of web server
-│   │   ├── demo2.rb                      │ 
-│   │   └── ...                        ───│ 
-│   │                                     
-│   ├── module_name2                   ───│ other modules, you add it according to the requirement
-│   ├── module_name3                      │
-│   └── ...                               │
+│   │   ├── store                 ───│ ---- DATA LAYER ----
+│   │   │   ├── docs                 │ stores the documents
+│   │   │   ├── tpls                 │ stores the templates, like *.erb
+│   │   │   ├── migrations           │ stores the migration records
+│   │   │   ├── langs                │ stores the language file, *.en, *.de, *.cn, etc
+│   │   │   │   ├── name.en          │ 
+│   │   │   │   └── name.cn          │
+│   │   │   ├── misc                 │ stores the Gemfile, Gemfile.lock, and others
+│   │   │   │   └── Gemfile          │
+│   │   │   ├── installs             │ stores the installing file that will be write into database, by
+│   │   │   │   └── _mods            │ the file name as the table name
+│   │   │   ├── tool.rb              │ these files will be loaded in command `$ 3s`
+│   │   │   └── ...                  │
+│   │   ├── views                 ───│ ---- VIEW LAYER ----
+│   │   │    ├── assets              │ assets dir stores the file *.js, *.css, *.jpg, *.png, etc
+│   │   │    │   ├── jqeury.js       │
+│   │   │    │   └── style.css       │
+│   │   │    ├── temp.slim           │ here is stored the template files that will be loaded
+│   │   │    ├── demo.slim           │ when the route file need it
+│   │   │    ├── demo2.slim          │ 
+│   │   │    └── ...                 │ 
+│   │   ├── logic                 ───│ ---- LOGIC LAYER ----
+│   │   │    ├── routes.rb           │ 
+│   │   │    └── ...                 │ any files with suffix `rb` under the logic dir, or root dir 
+│   │   ├── README.md                │ like routes.rb, logic/routes.rb, all will be loaded when
+│   │   ├── .gitignore               │ the web server startup
+│   │   ├── routes.rb                │ 
+│   │   ├── demo.rb                  │ 
+│   │   ├── demo2.rb                 │ 
+│   │   └── ...                   ───│ 
+│   │
+│   ├── module_name2              ───│ other modules, you add it according to the requirement
+│   ├── module_name3                 │
+│   └── ...                          │
 │
 ├── db
 │   ├── backup
@@ -62,29 +73,30 @@ Sdocs['Directory'] =<<Doc
 │   └── command_error_log.html
 ├── tmp
 │   └── install.lock
-└── scfg                                   put any options of static configuration here with an hash form
+└── scfg                               put any options of static configuration here with an hash form
+
+
+As you can see, we haven't the plug-in, we are all of modules, a really Modularization application.
+In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or get a module from remote repository, update existed module at local.
+
 Doc
 
 
 Sdocs['Configuration'] =<<Doc
+
 Simrb has two configuration files that is scfg and spath under the root directory, spath stores all of paths of default directory and file, and the scfg file is for setting options to your project application.
-Doc
 
-
-Sdocs['Modularization'] =<<Doc
-In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or get a module that has the requirement you want from remote repository, modify existed module at local.
-
-Here is a core [system](https://github.com/simrb/system) module for common application.
 Doc
 
 
 Sdocs['Command-line'] =<<Doc
-=== Overview
+
+== Overview
 
 Simrb includes many commands, `simrb`, `3s`. `simrb` is ran at global, except the `new` and `get`. The `3s` is only allowed to run under root directory of project. And the functionality of `3s` command could be extended by the file *.rb that is under the store dir.
 
 
-=== Description of command simrb
+== Description of command simrb
 
 init    - initialize a project directory
 new     - create a new module
@@ -175,10 +187,12 @@ kill
 Command format:
 
 	$ simrb kill
+
 Doc
 
 
 Sdocs['Hello World'] =<<Doc
+
 When it finished installing at once, you can cook yourself by a `Hello World` demo.
 
 Step 01, create a project directory called myapp
@@ -199,4 +213,5 @@ Step 04, start up by web server to see what we have done
 
 So, open browser and type the link http://0.0.0.0:3000 to address bar,
 yup, if you see the Hello world is there, welcome you fall in Simrb.
+
 Doc
