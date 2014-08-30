@@ -39,7 +39,7 @@ Sdocs['Directory'] =<<Doc
 │   │   │   ├── misc                 │ stores the Gemfile, Gemfile.lock, and others
 │   │   │   │   └── Gemfile          │
 │   │   │   ├── installs             │ stores the installing file that will be write into database, by
-│   │   │   │   └── _mods            │ the file name as the table name
+│   │   │   │   └── base_info        │ the file name as the table name
 │   │   │   ├── tool.rb              │ these files will be loaded in command `$ 3s`
 │   │   │   └── ...                  │
 │   │   ├── views                 ───│ ---- VIEW LAYER ----

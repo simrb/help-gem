@@ -24,14 +24,18 @@ module Simrb
 			end
 		end
 
-		def p args, out = nil
+		def p args, action = nil
 			res = ""
 
 			if args.class.to_s == 'Array'
 				res = args.join("\n")
 			elsif args.class.to_s == 'Hash'
 				args.each do | k, v |
-					res << "#{k.to_s.ljust(15)} => #{v}\n"
+					if action == :write
+						res << "#{k.to_s.ljust(7)} -- #{v}\n"
+					else
+						res << "#{k.to_s.ljust(15)} => #{v}\n"
+					end
 				end
 				res = res.chomp "\n"
 			else
@@ -40,7 +44,7 @@ module Simrb
 
 # 			puts "="*30 + "\n" + res + "\n" + "="*30
 			puts res
-			exit if out
+			exit if action == :exit
 		end
 
 		# return an hash that stores the modules that consists of local directory and repository
@@ -79,10 +83,10 @@ module Simrb
 			module_dirs.each do | name, path |
 				path 	= "#{path}#{Spath[:modinfo]}"
 				res 	= Simrb.yaml_read path
-				if res[0]["name"] == name
+				if res[0] and res[0]["name"] and res[0]["name"] == name
 					module_ds[name] = (res[0]["order"] || 99)
 				else
-					Simrb.p "Loading error to the module info, please check #{path}", :exit
+					Simrb.p "Loading error of module info, please check #{path}", :exit
 				end
 			end
 

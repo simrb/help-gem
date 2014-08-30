@@ -74,7 +74,7 @@ module Simrb
 # 				end
 # 				system("bundle install --gemfile=#{@app_name}/apps/#{@module_name}#{@gemfile_path} --without=#{mode}")
 
-				puts "Initialized project completion"
+				puts "Initialized completely"
 			end
 
 			# create a module, initialize default paths of file and directory
@@ -89,6 +89,7 @@ module Simrb
 			#
 			def new args
 				Simrb.root_dir_force
+				puts "Starting to create module directories"
 
 				args.each do | name |
 					if Smods.keys.include? name
@@ -103,21 +104,25 @@ module Simrb
 						Scfg[:init_module_path].each do | item |
 							path = "#{Spath[:module]}#{name}#{Spath[item]}"
 							Simrb.path_write path
+							Simrb.p({created: path}, :write)
 						end
 
 						# write the content of module info
 						res = Scfg[:init_module_field].merge({'name' => name})
-						Simrb.yaml_write "#{Spath[:module]}#{name}#{Spath[:modinfo]}", [res]
+						path = "#{Spath[:module]}#{name}#{Spath[:modinfo]}"
+						Simrb.yaml_write path, [res]
+						Simrb.p({wrote: path}, :write)
 
 						# write the content of .gitignore
 						path = "#{Spath[:module]}#{name}#{Spath[:gitignore]}"
 						File.open(path, "w+") do | f |
 							f.write Scfg[:init_gitinore_item].join("\n")
 						end
+						Simrb.p({wrote: path}, :write)
 					end
 				end
 
-				puts "Initialized module completion"
+				puts "Initializing module completed"
 			end
 
 			# get a module from remote repository to local
@@ -146,7 +151,7 @@ module Simrb
 					end
 				end
 
-				puts "Implemented completion"
+				puts "Implemented completely"
 			end
 
 			# kill the current process of Simrb of that is running in background
@@ -197,7 +202,7 @@ module Simrb
 				end
 
 				if args.empty?
-					res << 'please select the number before the list to see detials'
+					res << 'Please select the number before the list to see detials'
 					docs_key.each do | i, key |
 						res << "#{i.to_s}, #{key}"
 					end
