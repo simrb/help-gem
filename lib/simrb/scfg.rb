@@ -37,6 +37,32 @@ Spath						= {
 
 # default settings of scfg file
 Scfg						= {
+
+	# disable the modules of current project
+	:module_disable			=> [],
+
+	# require the modules of local repository
+	:module_require			=> ["system"],
+
+	:module_focus			=> nil,
+
+	:user 					=> 'unknown',
+
+	:encoding				=> 'utf-8',
+	:lang					=> 'en',
+	:install_lock			=> 'yes',
+	:db_connection			=> 'sqlite://db/data.db',
+	:server 				=> 'thin',
+	:bind 					=> '0.0.0.0',
+	:port					=> 3000,
+
+	:source					=> 'https://github.com/',
+
+	# options: development, production, test
+	:environment 			=> 'development',
+
+	:server_log_mode		=> 'file',
+
 	:field_time				=> ['created', 'changed'],
 	:field_fixnum			=> ['order', 'level'],
 	:field_number 			=> ['Fixnum', 'Integer', 'Float'],
@@ -50,27 +76,6 @@ Scfg						= {
 	:alias_gcmd				=> {
 		'm' => 'migration', 'i' => 'install', 'd' => 'data', 'v' => 'view'
 	},
-
-	# options: development, production, test
-	:environment 			=> 'development',
-
-	# disable the modules of current project
-	:module_disable			=> [],
-
-	# require the modules of local repository
-	:module_require			=> ["system"],
-
-	:module_focus			=> nil,
-
-	:encoding				=> 'utf-8',
-	:lang					=> 'en',
-	:install_lock			=> 'yes',
-	:db_connection			=> 'sqlite://db/data.db',
-	:server_log_mode		=> 'file',
-	:source					=> 'https://github.com/',
-	:server 				=> 'thin',
-	:bind 					=> '0.0.0.0',
-	:port					=> 3000,
 
 	:init_module_path		=> [
 		:store, :lang, :schema, :install, :modinfo, :misc, 
