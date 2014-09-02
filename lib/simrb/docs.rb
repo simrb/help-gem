@@ -76,8 +76,24 @@ Sdocs['Directory'] =<<Doc
 └── scfg                               put any options of static configuration here with an hash form
 
 
-As you can see, we haven't the plug-in, we are all of modules, a really Modularization application.
-In Simrb, any functionalities that should be packed into module, whatever you want to do, three ways is there for you: new a module, or get a module from remote repository, update existed module at local.
+As you can see, we haven't the plug-in, all of those are modules, a really Modularization application.
+In Simrb, any functionalities that should be packed into the module, whatever you want to do, suppose to check the function of module whether it is existing in repository, or new a module according to your demand
+
+Here is some common modules that maybe useful to regular module
+
+	base  - some common methods
+	data  - process data and interact with database
+			provide an hash key-val variable as settings that stores in database
+			provide the tag interface for classifing any datas
+			provide the menu interface for managing the routers of applications
+
+	view  - create shortcut view, generate view template, like form, list, table
+	admin - manage data with build-in view
+
+	file  - support file upload, download
+	user  - about user login, logout, register, authorise
+
+the base, data, view are core modules, and the admin, file, user are extension modules for varying business
 
 Doc
 
