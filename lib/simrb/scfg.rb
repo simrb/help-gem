@@ -15,6 +15,7 @@ Spath						= {
 	:log_dir				=> 'log/',
 	:server_log				=> 'log/thin.log',
 	:command_log			=> 'log/command_error_log.html',
+	:schema					=> 'log/migrations/',
 
 	# sub path under module directory of project
 	:tool					=> '/tool/',
@@ -22,7 +23,6 @@ Spath						= {
 	:store					=> '/store/',
 	:lang					=> '/store/langs/',
 	:doc					=> '/store/docs/',
-	:schema					=> '/store/migrations/',
 	:install				=> '/store/installs/',
 	:modinfo				=> '/store/installs/base_info',
 	:tpl					=> '/store/tpls/',
@@ -78,13 +78,13 @@ Scfg						= {
 	},
 
 	:init_module_path		=> [
-		:store, :lang, :schema, :install, :modinfo, :misc, 
+		:store, :install, :modinfo, :misc, 
 		:gemfile, :view, :assets, :readme, :route
 	],
 
 	:init_root_path			=> [
-		:db_dir, :upload_dir, :backup_dir, 
-		:tmp_dir, :log_dir, :module, :repo_dir
+		:db_dir, :upload_dir, :backup_dir, :repo_dir,
+		:tmp_dir, :log_dir, :module, :schema
 	],
 
 	:init_module_field		=> { 'name' => 'unname', 'author' => 'unknown', 'version' => '1.0.0' },
