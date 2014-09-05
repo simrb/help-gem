@@ -122,7 +122,7 @@ module Simrb
 		#
 		def path_write path, content = "", mode = "a+"
 			if File.exist?(path)
-				File.open(path, mode){|f| f.write content} if mode
+				File.open(path, mode){|f| f.write content} unless path[-1] == '/'
 			else
 				arrs	= path.split('/')
 				count	= arrs.count - 1
