@@ -1,7 +1,7 @@
 
 # basic path definition
 Spath						= {
-	:repo_dir				=> File.expand_path("~/.simrb/modules/"),
+	:repo_dirs				=> [File.expand_path("~/.simrb/modules/")],
 
 	# root path of project
 	:module					=> 'modules/',
@@ -42,7 +42,7 @@ Scfg						= {
 	:module_disable			=> [],
 
 	# require the modules of local repository
-	:module_require			=> ["system"],
+	:module_require			=> [],
 
 	:module_focus			=> nil,
 
