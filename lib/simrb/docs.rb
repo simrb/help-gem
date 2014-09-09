@@ -2,7 +2,6 @@
 # all of help documents is wrote here
 #
 
-Sdocs = {}
 Sdocs['Preface'] =<<Doc
 
 == What is the Simrb ?

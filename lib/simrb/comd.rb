@@ -19,7 +19,8 @@ module Simrb
 			if Scommand.private_method_defined? cmd
 				self.send(cmd, args)
 			elsif cmd == "help"
-				help args
+				require 'simrb/docs'
+				Simrb.help args
 			else
 				puts "No command called #{cmd}, please try `$ simrb help`"
 			end
@@ -179,40 +180,6 @@ module Simrb
 			def info args = []
 				require 'simrb/info'
 				Simrb.p Simrb::Info
-			end
-
-			# the help document
-			#
-			# == Example
-			#
-			# 	$ simrb help
-			# 	$ simrb help 0
-			#
-			def help args = []
-				require 'simrb/docs'
-
-				res 		= []
-				i 			= 0
-				docs_key 	= {}
-				docs_val 	= {}
-				Sdocs.each do | key, val |
-					docs_key[i] = key
-					docs_val[i] = val
-					i = i + 1
-				end
-
-				if args.empty?
-					res << 'Please select the number before the list to see detials'
-					docs_key.each do | i, key |
-						res << "#{i.to_s}, #{key}"
-					end
-				else
-					args.each do | i |
-						res << (docs_val.include?(i.to_i) ? docs_val[i.to_i] : 'no document')
-					end
-				end
-
-				Simrb.p res
 			end
 
 	end

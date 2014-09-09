@@ -50,8 +50,6 @@ if Simrb::Stool.method_defined?(method)
 # document mode
 elsif method == "help"
 
-	require 'simrb/help'
-
 	Smods.each do | name, path |
 		Dir["#{path}#{Spath[:doc]}*.#{Scfg[:lang]}.rb"].each do | path2 |
 			require(path2)
