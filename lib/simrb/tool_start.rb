@@ -13,18 +13,21 @@ end
 Sload[:tool].each do | path |
 	require path
 end
-argv = ARGV.clone
+
+argv 	= ARGV.clone
+method	= argv.shift(1)[0]
+method	= Scfg[:alias_cmd][method] if Scfg[:alias_cmd].keys.include? method
+
 # output = []
 
 # command mode
-if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
+if Simrb::Stool.method_defined?(method)
 
 	helpers do
 		include Simrb::Stool
 	end
 
 	get '/_tools' do
-		method = argv.shift(1)[0]
 		argv.empty? ? eval(method).to_s : eval("#{method} #{argv}").to_s
 	end
 
@@ -45,7 +48,7 @@ if argv.count > 0 and Simrb::Stool.method_defined?(argv[0])
 	end
 
 # document mode
-else
+elsif method == "help"
 
 	require 'simrb/help'
 
@@ -55,9 +58,11 @@ else
 		end
 	end
 
-	argv.shift 1
+# 	argv.shift 1
 	puts Simrb.help(argv)
 
+else
+	puts "No command #{method}, please try $3s help"
 end
 
 puts "="*30

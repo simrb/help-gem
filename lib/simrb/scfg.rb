@@ -77,6 +77,9 @@ Scfg						= {
 		'm' => 'migration', 'i' => 'install', 'd' => 'data', 'v' => 'view'
 	},
 
+	:alias_cmd				=> {
+	},
+
 	:init_module_path		=> [
 		:store, :install, :modinfo, :misc, 
 		:gemfile, :view, :assets, :readme, :route
