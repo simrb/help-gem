@@ -43,6 +43,11 @@ module Simrb
 			def init args
 				app_name = args.empty? ? 'myapp' : args.shift 
 
+				# initialize the repositories
+				Scfg[:repo_dirs].each do | path |
+					Simrb.path_write path
+				end
+
 				# generate module directories and files
 				Dir.mkdir app_name
 				Dir.chdir app_name
