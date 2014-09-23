@@ -86,7 +86,7 @@ Scfg						= {
 	],
 
 	:init_root_path			=> [
-		:db_dir, :upload_dir, :backup_dir, :repo_dir,
+		:db_dir, :upload_dir, :backup_dir,
 		:tmp_dir, :log_dir, :module, :schema
 	],
 
