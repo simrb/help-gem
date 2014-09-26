@@ -4,20 +4,31 @@
 
 Sdocs['Preface'] =<<Doc
 
-== What is the Simrb ?
+== What is the purpose Simrb will implement ?
 
-Simrb is a framework for building server application. Many years ago, i had tried to find an application to do the work that easily create app by providing various data with various forms, like web page, json, xml, etc.
+Simrb is a lightweight tool to build server applications. An important thing that needs to be done the work with simple and comfortable.
 
-The important thing of using is that needs to be simple, comfortable. Unfortunately, nothing i found, so this is why would exists simrb today.
+	It needs to help us create and organize the structure of data model
+	It needs to provide the user interface to maintain and manage the database
+	It needs to output various datas, like pure text, html, xml, json, even binary file
+
+Whatever the terminal it is, the base content of server side that is required as above.
 
 
-== What's the thing Simrb will implements ?
+== What are the more things Simrb will do ?
 
-For the purpose of origin, we make the definition to Simrb, whatever the things we do, that need to be rounded it. The opinions as following,
+As all of software applications that can be extended with adding the plug-in or module, but the Simrb is especial in this area, where will treat everything as a module, even the core function, you can replace the core module with your written of custom as you need.
 
-	defining the directory architecture
-	defining the basic command-line
-	initializing the configuration option
+So, what thing you can do ? anything you can do in the module.
+
+
+== What is the thing Simrb-gem will do ?
+
+As more things let the module does, the Simrb-gem that just a helper to do less thing, it provides the base architeture of what thing you will do.
+
+	defining the base directory structure of module and project
+	defining the base command-lines
+	initializing the configured options
 	initializing the loading workflow
 
 Doc
@@ -74,11 +85,11 @@ Sdocs['Directory'] =<<Doc
 │   └── install.lock
 └── scfg                               put any options of static configuration here with an hash form
 
+Doc
 
-As you can see, we haven't the plug-in, all of those are modules, a really Modularization application.
-In Simrb, any functionalities that should be packed into the module, whatever you want to do, suppose to check the function of module whether it is existing in repository, or new a module according to your demand
+Sdocs['Module'] =<<Doc
 
-Here is some common modules that maybe useful to regular module
+Here is some core modules that is helpful to common application
 
 	base  - some common methods
 	data  - process data and interact with database
@@ -89,17 +100,17 @@ Here is some common modules that maybe useful to regular module
 	view  - create shortcut view, generate view template, like form, list, table
 	admin - manage data with build-in view
 
-	file  - support file upload, download
+	file  - provide the file upload, download
 	user  - about user login, logout, register, authorise
 
-the base, data, view are core modules, and the admin, file, user are extension modules for varying business
+the base, data and view are core modules, the admin, file and user are extended modules for common requirement
 
 Doc
 
 
 Sdocs['Configuration'] =<<Doc
 
-Simrb has two configuration files that is scfg and spath under the root directory, spath stores all of paths of default directory and file, and the scfg file is for setting options to your project application.
+Simrb has two configuration files that are the scfg and spath under the root directory, the spath file stores all of paths of directory and file, scfg file stores the setting options of your project application.
 
 Doc
 
