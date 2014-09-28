@@ -127,10 +127,17 @@ module Simrb
 			else
 				arrs	= path.split('/')
 				count	= arrs.count - 1
+				prve	= ""
+
+ 				if arrs[0] == ""
+ 					arrs.delete("")
+					prve = "/"
+ 				end
+
 				(0..count).each do | i |
-					new_path = arrs[0..i].join("/")
-					unless File.exist? new_path
-						new_path == path ? File.open(path, mode){|f| f.write content} : Dir.mkdir(new_path)
+					sub_path = prve + arrs[0..i].join("/")
+					unless File.exist? sub_path
+						sub_path == path ? File.open(path, mode){|f| f.write content} : Dir.mkdir(sub_path)
 					end
 				end
 			end
