@@ -92,7 +92,7 @@ Scfg						= {
 
 	:init_module_field		=> { 'name' => 'unname', 'author' => 'unknown', 'version' => '1.0.0' },
 
-	:init_gitinore_item		=> ["*.swp", "*.gem", "*~", "*.lock"],
+	:init_gitinore_item		=> ["*.swo", "*.swp", "*.gem", "*~", "*.lock", "*.bak"],
 
 	:init_scfg_item			=> [
 		:module_require, :module_disable, :module_focus, :source,
