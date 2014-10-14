@@ -45,7 +45,7 @@ module Simrb
 
 				# initialize the repositories
 				Scfg[:repo_dirs].each do | path |
-					Simrb.path_write "#{path}/"
+					Simrb.path_write Simrb.addslash(path)
 				end
 
 				# generate module directories and files
@@ -145,7 +145,7 @@ module Simrb
 			def get args
 				Simrb.root_dir_force
 
-				repo_dir = "#{Spath[:repo_dirs][0]}/"
+				repo_dir = Simrb.addslash(Spath[:repo_dirs][0])
 				Simrb.path_write repo_dir
 
 				args.each do | all_name |
@@ -177,7 +177,7 @@ module Simrb
 			def pull args = []
 				from_repo	= Scfg[:source] + (args[0] ? args[0] : "simrb/repo")
 				to_repo		= args[1] ? args[1] : Spath[:repo_dirs][0]
-				to_repo		= "#{to_repo}/" unless to_repo[-1] == '/'
+				to_repo 	= Simrb.addslash(to_repo)
 
 				Simrb.path_write to_repo
 				system("git clone #{from_repo}.git")
