@@ -69,7 +69,7 @@ module Simrb
 			module_ds 	= {}
 
 			# load modules from local repository
-			Spath[:repo_dirs].map{|m| m + '*'}.each do | dir |
+			Spath[:repo_dirs].map{|m| m + '/*'}.each do | dir |
 				Dir[dir].each do | path |
 					name = path.split("/").last
 					module_dirs[name] = File.expand_path(path) if Scfg[:module_require].include? name

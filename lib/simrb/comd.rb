@@ -45,7 +45,7 @@ module Simrb
 
 				# initialize the repositories
 				Scfg[:repo_dirs].each do | path |
-					Simrb.path_write path
+					Simrb.path_write "#{path}/"
 				end
 
 				# generate module directories and files
@@ -144,7 +144,9 @@ module Simrb
 			#
 			def get args
 				Simrb.root_dir_force
-				repo_dir = Spath[:repo_dirs][0]
+
+				repo_dir = "#{Spath[:repo_dirs][0]}/"
+				Simrb.path_write repo_dir
 
 				args.each do | all_name |
 					name = all_name.split('/').last
@@ -158,6 +160,28 @@ module Simrb
 				end
 
 				puts "Implemented completely"
+			end
+
+			# pull whole remote repository from github
+			#
+			# == Example
+			#
+			# by default, that will pull the official repo
+			#
+			# 	$ simrb pull
+			#
+			# or, specify the link you need
+			#
+			# 	$ simrb pull demo/repo ~/simrb_repo
+			#
+			def pull args = []
+				from_repo	= Scfg[:source] + (args[0] ? args[0] : "simrb/repo")
+				to_repo		= args[1] ? args[1] : Spath[:repo_dirs][0]
+				to_repo		= "#{to_repo}/" unless to_repo[-1] == '/'
+
+				Simrb.path_write to_repo
+				system("git clone #{from_repo}.git")
+				system("mv #{from_repo.split('/').last} #{to_repo}")
 			end
 
 			# kill the current process of Simrb of that is running in background
