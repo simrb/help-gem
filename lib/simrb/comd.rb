@@ -42,6 +42,7 @@ module Simrb
 			#
 			def init args
 				app_name = args.empty? ? 'myapp' : args.shift 
+# 				app_name = File.expand_path "./#{app_name}"
 
 				# initialize the repositories
 				Spath[:repo_dirs].each do | path |
@@ -49,7 +50,7 @@ module Simrb
 				end
 
 				# generate module directories and files
-				Dir.mkdir app_name
+				Dir.mkdir app_name unless File.exist? app_name
 				Dir.chdir app_name
 
 				Scfg[:init_root_path].each do | item |
