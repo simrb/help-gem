@@ -224,7 +224,7 @@ module Simrb
 		end
 
 		def addslash path
-			"#{path}/" unless path[-1] == '/'
+			path[-1] == '/' ? path : "#{path}/"
 		end
 
 	end
