@@ -90,14 +90,19 @@ Scfg						= {
 		:tmp_dir, :log_dir, :module, :schema
 	],
 
-	:init_module_field		=> { 'name' => 'unname', 'author' => 'unknown', 'version' => '1.0.0' },
+	:init_module_field		=> {
+		'name' => 'unname', 'author' => 'unknown', 'version' => '1.0.0' 
+	},
 
-	:init_gitinore_item		=> ["*.swo", "*.swp", "*.gem", "*~", "*.lock", "*.bak"],
+	:init_gitinore_item		=> [
+		"*.swo", "*.swp", "*.gem", "*~", "*.lock", "*.bak"
+	],
 
 	:init_scfg_item			=> [
 		:module_require, :module_disable, :module_focus, :source,
 		:lang, :db_connection, :environment, :bind, :port,
 	],
+
 }
 
 
