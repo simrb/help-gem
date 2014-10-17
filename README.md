@@ -18,7 +18,7 @@ How to use ?
 
 ## RESCUE
 
-If you are a newbie in ruby or web, the following options is that tells you how to setup the environment step by step. assuming you have new operating system that had not installed anything or configuration environment about application of `Simrb`
+If you are a newbie in programming development, the following representation that tells you how to setup the environment step by step. assuming you have pure environment in your operating system that has not been installed anything or configured the application of `Simrb`
 
 ### Step 01, install ruby
 
@@ -29,17 +29,16 @@ If you are a newbie in ruby or web, the following options is that tells you how 
 
 	$ yum install git
 
-### Step 03, install database
-suppose the database is `sqlite`, type the commands to install it
+### Step 03, install database, we suppose you use the database `sqlite` as the first installation, so
 
 	# yum install sqlite3*
 	# yum install sqlite-devel
 
-now, the string of database connection is `sqlite://db/data.db` that need to be fill in `scfg` file for using as an hash option, like `db_connection: sqlite://db/data.rb`
+now, the database connection string that supposes to be `db_connection: sqlite://db/data.rb`, you would place it in scfg file later
 
-### Step 04, boot up by web server
+### Step 04, booting
 
-about web server environment, check the port 80 and make sure it has not be used
+about web server environment, check the port 80 and make sure it has not been used
 
 	netstat -apn | grep :80
 
@@ -53,6 +52,10 @@ add the port to iptable, then refresh the service
 	# service iptables save
 	# service iptables restart
 
-and, if you need to change the port or ip of your project, just go to `scfg` file, modify the option `port: 80` or `bind: 0.0.0.0` as you want
+finally, start it by web mode
+
+	$ simrb start
+
+if you need to change the port or ip for your project, just modify the option `port: 80` or `bind: 0.0.0.0` of the `scfg` file
 
 ## END

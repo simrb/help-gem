@@ -4,32 +4,9 @@
 
 Sdocs['Preface'] =<<Doc
 
-== What is the purpose Simrb will implement ?
+This is a project to help you build the web service easily, it let you save more time on front-end developing of various terminal applications under the same background data provider.
 
-Simrb is a lightweight tool to build server applications. An important thing that needs to be done the work with simple and comfortable.
-
-	It needs to help us create and organize the structure of data model
-	It needs to provide the user interface to maintain and manage the database
-	It needs to output various datas, like pure text, html, xml, json, even binary file
-
-Whatever the terminal it is, the base content of server side that is required as above.
-
-
-== What are the more things Simrb will do ?
-
-As all of software applications that can be extended with adding the plug-in or module, but the Simrb is especial in this area, where will treat everything as a module, even the core function, you can replace the core module with your written of custom as you need.
-
-So, what thing you can do ? anything you can do in the module.
-
-
-== What is the thing Simrb-gem will do ?
-
-As more things let the module does, the Simrb-gem that just a helper to do less thing, it provides the base architeture of what thing you will do.
-
-	defining the base directory structure of module and project
-	defining the base command-lines
-	initializing the configured options
-	initializing the loading workflow
+The core goal of Simrb is focused on how to process background data and assist the data interaction of between front-end and back-end. It aims to get you a most pure utility, and efficient, modular, focused.
 
 Doc
 
@@ -229,7 +206,7 @@ Step 02, new a module called demo
 
 	$ cd myapp && simrb new demo
 
-Step 03, add content to file 
+Step 03, add code to file 
 
 	$ echo 'get "/" do "Hello world" end' > modules/demo/routes.rb
 
@@ -237,7 +214,7 @@ Step 04, start up by web server to see what we have done
 
 	$ simrb start
 
-So, open browser and type the link http://0.0.0.0:3000 to address bar,
-yup, if you see the Hello world is there, welcome you fall in Simrb.
+So, put the default address `http://0.0.0.0:3000` to browser
+yup, if you see the `Hello world` is there, welcome to Simrb.
 
 Doc
