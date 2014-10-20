@@ -1,9 +1,16 @@
 
 # basic path definition
 Spath						= {
-	:repo_dirs				=> [File.expand_path("~/.simrb/modules/")],
 
-	# root path of project
+	:repo_dirs				=> [
+		# main repository
+		File.expand_path("~/.simrb/"),
+
+		# children repository
+		File.expand_path("~/.simrb/modules/")
+	],
+
+	# root directory path of project
 	:module					=> 'modules/',
 	:public					=> 'public/',
 	:db_dir					=> 'db/',
@@ -17,7 +24,7 @@ Spath						= {
 	:command_log			=> 'log/command_error_log.html',
 	:schema					=> 'log/migrations/',
 
-	# sub path under module directory of project
+	# module directory path
 	:tool					=> '/tool/',
 	:logic					=> '/logic/',
 	:store					=> '/store/',
@@ -33,6 +40,7 @@ Spath						= {
 	:gitignore				=> '/.gitignore',
 	:route					=> '/routes.rb',
 	:readme					=> '/README.md',
+
 }
 
 # default settings of scfg file

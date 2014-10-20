@@ -146,7 +146,7 @@ module Simrb
 			def get args
 				Simrb.root_dir_force
 
-				repo_dir = Simrb.addslash(Spath[:repo_dirs][0])
+				repo_dir = Simrb.addslash(Spath[:repo_dirs][1])
 				Simrb.path_write repo_dir
 
 				args.each do | all_name |
