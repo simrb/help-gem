@@ -146,7 +146,7 @@ module Simrb
 			def get args
 				Simrb.root_dir_force
 
-				repo_dir = Simrb.addslash(Spath[:repo_dirs][1])
+				repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Scfg[:mods_repo])
 				Simrb.path_write repo_dir
 
 				args.each do | all_name |
@@ -176,13 +176,16 @@ module Simrb
 			# 	$ simrb pull demo/repo ~/simrb_repo
 			#
 			def pull args = []
-				from_repo	= Scfg[:source] + (args[0] ? args[0] : "simrb/repo")
-				to_repo		= args[1] ? args[1] : Spath[:repo_dirs][0]
-				to_repo 	= Simrb.addslash(to_repo)
+				from_repo		= Scfg[:source] + (args[0] ? args[0] : Scfg[:core_repo])
+				target_repo		= args[1] ? args[1] : Spath[:repo_dirs][0]
+				target_repo 	= Simrb.addslash(target_repo)
 
-				Simrb.path_write to_repo
-				system("git clone #{from_repo}.git")
-				system("mv #{from_repo.split('/').last} #{to_repo}")
+				unless File.exist? target_repo
+					Simrb.path_write target_repo
+					system("git clone #{from_repo}.git")
+					system("mv #{from_repo.split('/').last} #{target_repo}")
+				end
+				puts "Implemented completely"
 			end
 
 			# kill the current process of Simrb of that is running in background
