@@ -1,5 +1,5 @@
 
-# basic path definition
+# default path of project directory and module
 Spath						= {
 
 	# root directory path of project
@@ -35,7 +35,7 @@ Spath						= {
 
 }
 
-# default settings of scfg file
+# default setting options
 Scfg						= {
 
 	# disable the modules of current project
@@ -47,6 +47,12 @@ Scfg						= {
 	:module_focus			=> nil,
 
 	:user 					=> 'unknown',
+
+	# default config filename
+	:name 					=> 'scfg.rb',
+
+	# overwrite the file Scfg[:name]
+	:name_overwrite			=> "/scfg_copy.rb",
 
 	:encoding				=> 'utf-8',
 	:lang					=> 'en',
@@ -107,10 +113,11 @@ Scfg						= {
 		"*.swo", "*.swp", "*.gem", "*~", "*.lock", "*.bak"
 	],
 
-	:init_scfg_item			=> [
-		:module_require,
-		:lang, :db_connection, :environment, :bind, :port,
-	],
+# 	:init_scfg_item			=> [
+# 		:module_require,
+# 		:lang, :db_connection, :environment, :bind, :port,
+# 	],
 
 }
+
 

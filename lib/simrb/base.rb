@@ -152,7 +152,7 @@ module Simrb
 			end
 
 			# check the file that is necessary to be loaded
-			unless File.exist? 'scfg'
+			unless File.exist?(Sroot + Scfg[:name])
 				Simrb.p "Current command only allow to be used under root directory of project", :exit
 			end
 		end
@@ -230,18 +230,9 @@ module Simrb
 	end
 end
 
-# load config file in shortcut pipe
-if File.exist? 'scfg'
-	Simrb.yaml_read('scfg').each do | k, v |
-		Scfg[k.to_sym] = v
-	end
-end
-
-# load path in shortcut pipe
-if File.exist? 'spath'
-	Simrb.yaml_read('spath').each do | k, v |
-		Spath[k.to_sym] = v
-	end
+# load config file
+if File.exist?(Sroot + Scfg[:name])
+	require (Sroot + Scfg[:name])
 end
 
 # load modules

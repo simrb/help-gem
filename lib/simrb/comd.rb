@@ -53,17 +53,15 @@ module Simrb
 				Dir.mkdir app_name unless File.exist? app_name
 				Dir.chdir app_name
 
+				# generate project directories
 				Scfg[:init_root_path].each do | item |
 					path = "#{Spath[item]}"
 					Simrb.path_write path
 				end
 
-				# initialize scfg file
-				data = {}
-				Scfg[:init_scfg_item].each do | item |
-					data[item] = Scfg[item]
-				end
-				Simrb.yaml_write('scfg', data)
+				# initialize config file
+				data = File.read(File.dirname(__FILE__) + Scfg[:name_overwrite])
+				Simrb.path_write(Scfg[:name], data)
 
 				# create module if it is given,
 				# get module from remote repository if it has the backslash,

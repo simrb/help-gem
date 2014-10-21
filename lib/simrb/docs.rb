@@ -60,7 +60,7 @@ Sdocs['Directory'] =<<Doc
 │   └── command_error_log.html
 ├── tmp
 │   └── install.lock
-└── scfg                               put any options of static configuration here with an hash form
+└── scfg.rb                           put any options of static configuration here with an hash form
 
 Doc
 
@@ -87,7 +87,7 @@ Doc
 
 Sdocs['Configuration'] =<<Doc
 
-Simrb has two configuration files that are the scfg and spath under the root directory, the spath file stores all of paths of directory and file, scfg file stores the setting options of your project application.
+Simrb has two configuration files that are the scfg.rb and spath under the root directory, the spath file stores all of paths of directory and file, scfg.rb file stores the setting options of your project application.
 
 Doc
 
@@ -135,7 +135,7 @@ Command format:
 
 	$ simrb new [module_name] [module_name2] [module_name3] ...
 
-note that this command only be used in root directory that includes the scfg file
+note that this command only be used in root directory that includes the scfg.rb file
 
 Example 1, 
 

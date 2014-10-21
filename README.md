@@ -34,7 +34,7 @@ If you are a newbie in programming development, the following representation tha
 	# yum install sqlite3*
 	# yum install sqlite-devel
 
-now, the database connection string that supposes to be `db_connection: sqlite://db/data.rb`, you would place it in scfg file later
+now, the database connection string that supposes to be `db_connection: sqlite://db/data.rb`, you would place it in `scfg.rb` file later
 
 ### Step 04, booting
 
@@ -56,6 +56,6 @@ finally, start it by web mode
 
 	$ simrb start
 
-if you need to change the port or ip for your project, just modify the option `port: 80` or `bind: 0.0.0.0` of the `scfg` file
+if you need to change the port or ip for your project, just modify the option `port: 80` or `bind: 0.0.0.0` of the `scfg.rb` file
 
 ## END
