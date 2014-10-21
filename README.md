@@ -8,8 +8,8 @@ How to install ?
 
 or, install with github
 
-	$ git clone https://github.com/simrb/simrb-gem.git
-	$ cd simrb-gem
+	$ git clone https://github.com/simrb/simrb-help.git
+	$ cd simrb-help
 	$ ruby setup.rb
 
 How to use ?
