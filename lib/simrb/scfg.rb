@@ -60,11 +60,11 @@ Scfg						= {
 
 	:source					=> 'https://github.com/',
 
-	# a dir of repo_dirs is saved the gotten module from remote
-	:mods_repo				=> 'simrb-mods/',
+	# the default directory for saving the pull module from remote
+	:mods_gets				=> 'simrb-mods/',
 
-	# the repo that saves the core module
-	:core_repo				=> 'simrb/simrb-repo',
+	# the directory that saves core modules
+	:mods_core				=> 'simrb/simrb-repo',
 
 	# options: development, production, test
 	:environment 			=> 'development',
@@ -107,7 +107,7 @@ Scfg						= {
 	],
 
 	:init_scfg_item			=> [
-		:module_require, :module_disable, :module_focus, :source,
+		:module_require,
 		:lang, :db_connection, :environment, :bind, :port,
 	],
 

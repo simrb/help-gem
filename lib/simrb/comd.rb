@@ -146,7 +146,7 @@ module Simrb
 			def get args
 				Simrb.root_dir_force
 
-				repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Scfg[:mods_repo])
+				repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Scfg[:mods_gets])
 				Simrb.path_write repo_dir
 
 				args.each do | all_name |
@@ -176,7 +176,7 @@ module Simrb
 			# 	$ simrb pull demo/repo ~/simrb_repo
 			#
 			def pull args = []
-				from_repo		= Scfg[:source] + (args[0] ? args[0] : Scfg[:core_repo])
+				from_repo		= Scfg[:source] + (args[0] ? args[0] : Scfg[:mods_core])
 				target_repo		= args[1] ? args[1] : Spath[:repo_dirs][0]
 				target_repo 	= Simrb.addslash(target_repo)
 
