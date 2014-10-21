@@ -2,8 +2,6 @@
 # basic path definition
 Spath						= {
 
-	:repo_dirs				=> [File.expand_path("~/.simrb/")],
-
 	# root directory path of project
 	:module					=> 'modules/',
 	:public					=> 'public/',
@@ -60,11 +58,14 @@ Scfg						= {
 
 	:source					=> 'https://github.com/',
 
-	# the default directory for saving the pull module from remote
-	:mods_gets				=> 'simrb-mods/',
+	# the repository directories
+	:repo_dirs				=> [File.expand_path("~/.simrb/")],
 
-	# the directory that saves core modules
-	:mods_core				=> 'simrb/simrb-repo',
+	# a children repository that saves the pulled module from remote
+	:repo_mods				=> 'simrb-mods/',
+
+	# a children repository that saves the core modules of official default
+	:repo_core				=> 'simrb/simrb-repo',
 
 	# options: development, production, test
 	:environment 			=> 'development',
@@ -112,5 +113,4 @@ Scfg						= {
 	],
 
 }
-
 

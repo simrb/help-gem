@@ -45,7 +45,7 @@ module Simrb
 # 				app_name = File.expand_path "./#{app_name}"
 
 				# initialize the repositories
-				Spath[:repo_dirs].each do | path |
+				Scfg[:repo_dirs].each do | path |
 					Simrb.path_write Simrb.addslash(path)
 				end
 
@@ -146,7 +146,7 @@ module Simrb
 			def get args
 				Simrb.root_dir_force
 
-				repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Scfg[:mods_gets])
+				repo_dir = Simrb.addslash(Scfg[:repo_dirs][0] + Scfg[:repo_mods])
 				Simrb.path_write repo_dir
 
 				args.each do | all_name |
@@ -176,8 +176,8 @@ module Simrb
 			# 	$ simrb pull demo/repo ~/simrb_repo
 			#
 			def pull args = []
-				from_repo		= Scfg[:source] + (args[0] ? args[0] : Scfg[:mods_core])
-				target_repo		= args[1] ? args[1] : Spath[:repo_dirs][0]
+				from_repo		= Scfg[:source] + (args[0] ? args[0] : Scfg[:repo_core])
+				target_repo		= args[1] ? args[1] : Scfg[:repo_dirs][0]
 				target_repo 	= Simrb.addslash(target_repo)
 
 				unless File.exist? target_repo
