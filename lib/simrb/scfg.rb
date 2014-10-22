@@ -64,8 +64,12 @@ Scfg						= {
 
 	:source					=> 'https://github.com/',
 
-	# the repository directories
-	:repo_dirs				=> [(File.expand_path("~/.simrb") + '/')],
+	# the directories of main repository 
+	:repo_dirs				=> [
+		(File.expand_path("~/.simrb") + '/'),
+		(File.expand_path("~/.simrb") + '/simrb-mods/'),
+		(File.expand_path("~/.simrb") + '/simrb-repo/'),
+	],
 
 	# a children repository that saves the pulled module from remote
 	:repo_mods				=> 'simrb-mods/',
