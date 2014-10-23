@@ -2,6 +2,12 @@
 # default path of project directory and module
 Spath						= {
 
+	# the required repository 
+	:repo_dirs				=> [(File.expand_path("~/.simrb") + '/')],
+
+	# default directory for saving the pulled module from remote
+	:repo_mods				=> 'simrb-mods/',
+
 	# root directory path of project
 	:module					=> 'modules/',
 	:public					=> 'public/',
@@ -62,20 +68,10 @@ Scfg						= {
 	:bind 					=> '0.0.0.0',
 	:port					=> 3000,
 
-	:source					=> 'https://github.com/',
+	:source					=> 'https://github.com/simrb/',
 
-	# the directories of main repository 
-	:repo_dirs				=> [
-		(File.expand_path("~/.simrb") + '/'),
-		(File.expand_path("~/.simrb") + '/simrb-mods/'),
-		(File.expand_path("~/.simrb") + '/simrb-repo/'),
-	],
-
-	# a children repository that saves the pulled module from remote
-	:repo_mods				=> 'simrb-mods/',
-
-	# a children repository that saves the core modules of official default
-	:repo_core				=> 'simrb/simrb-repo',
+	# a default core repository for loading when the server booting
+	:main_repo				=> 'simrb-repo',
 
 	# options: development, production, test
 	:environment 			=> 'development',
@@ -117,11 +113,8 @@ Scfg						= {
 		"*.swo", "*.swp", "*.gem", "*~", "*.lock", "*.bak"
 	],
 
-# 	:init_scfg_item			=> [
-# 		:module_require,
-# 		:lang, :db_connection, :environment, :bind, :port,
-# 	],
-
 }
 
-
+# append the children repository
+Spath[:repo_dirs] << (Spath[:repo_dirs][0] + Spath[:repo_mods])
+Spath[:repo_dirs] << (Spath[:repo_dirs][0] + Scfg[:main_repo] + '/')

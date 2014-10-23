@@ -45,7 +45,7 @@ module Simrb
 # 				app_name = File.expand_path "./#{app_name}"
 
 				# initialize the repositories
-				Scfg[:repo_dirs].each do | path |
+				Spath[:repo_dirs].each do | path |
 					Simrb.path_write Simrb.addslash(path)
 				end
 
@@ -61,6 +61,7 @@ module Simrb
 
 				# initialize config file
 				data = File.read(File.dirname(__FILE__) + Scfg[:name_overwrite])
+				data << "\nScfg[:key]\t\t\t\t= '#{Simrb.random(16)}'\n"
 				Simrb.path_write(Scfg[:name], data)
 
 				# create module if it is given,
@@ -135,24 +136,23 @@ module Simrb
 			#
 			# == Example
 			# 
-			# 	$ simrb get simrb/system
+			# 	$ simrb get system
 			#
 			# or, more than one at same time
 			#
-			# 	$ simrb get simrb/system simrb/test
+			# 	$ simrb get system test
 			#
 			def get args
 				Simrb.root_dir_force
 
-				repo_dir = Simrb.addslash(Scfg[:repo_dirs][0] + Scfg[:repo_mods])
+				repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Spath[:repo_mods])
 				Simrb.path_write repo_dir
 
-				args.each do | all_name |
-					name = all_name.split('/').last
+				args.each do | name |
 					if Smods.keys.include? name
 						puts "The module #{name} is existing at local repository, hasn't got from remote"
 					else
-						path	= "#{Scfg[:source]}#{all_name}.git"
+						path	= "#{Scfg[:source]}#{name}.git"
 						local	= "#{repo_dir}#{name}"
 						system("git clone #{path} #{local}")
 					end
@@ -169,18 +169,22 @@ module Simrb
 			#
 			# 	$ simrb pull
 			#
-			# or, specify the link you need
+			# add the option `-f` force to pulling
 			#
-			# 	$ simrb pull demo/repo ~/simrb_repo
+			# 	$ simrb pull -f
+			#
+			# or, specify the link you need in second parameter
+			#
+			# 	$ simrb pull repo ~/simrb_repo
 			#
 			def pull args = []
-				from_repo	= Scfg[:source] + (args[0] ? args[0] : Scfg[:repo_core])
-				repo_name	= from_repo.split('/').last
-				to_repo		= args[1] ? args[1] : Scfg[:repo_dirs][0]
-				to_repo 	= Simrb.addslash(to_repo)
-				to_path		= to_repo + repo_name
+				args, opts	= Simrb.input_format args
+				repo_name	= args[0] ? args[0] : Scfg[:main_repo]
+				from_repo	= Scfg[:source] + repo_name
+				to_repo 	= Simrb.addslash(args[1] ? args[1] : Spath[:repo_dirs][0])
+				ispull		= File.exist?(to_repo + repo_name + "/README.md") ? (opts[:f] ? true : false) : true
 
-				unless File.exist? to_path
+				if ispull
 					Simrb.path_write to_repo
 					system("git clone #{from_repo}.git")
 					system("mv #{repo_name} #{to_repo}")

@@ -69,7 +69,7 @@ module Simrb
 			module_ds 	= {}
 
 			# load modules from local repository
-			Scfg[:repo_dirs].map{|m| m + '*'}.each do | dir |
+			Spath[:repo_dirs].map{|m| m + '*'}.each do | dir |
 				Dir[dir].each do | path |
 					name = path.split("/").last
 					module_dirs[name] = File.expand_path(path) if Scfg[:module_require].include? name
@@ -219,12 +219,16 @@ module Simrb
 					res << (docs_val.include?(i.to_i) ? docs_val[i.to_i] : 'no document')
 				end
 			end
-
 			Simrb.p res
 		end
 
 		def addslash path
 			path[-1] == '/' ? path : "#{path}/"
+		end
+
+		def random size = 12
+			charset = ('a'..'z').to_a + ('0'..'9').to_a + ('A'..'Z').to_a
+			(0...size).map{charset.to_a[rand(charset.size)]}.join
 		end
 
 	end
