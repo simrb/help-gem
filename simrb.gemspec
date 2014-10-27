@@ -18,8 +18,8 @@ Gem::Specification.new do | s |
 	s.files 				= `ls lib/simrb`.split("\n").map{|f| "lib/simrb/#{f}"}.unshift("lib/simrb.rb")
 
 	s.add_runtime_dependency "sinatra", ["= 1.4.5"]
-	s.add_runtime_dependency "sequel", ["= 4.10.0"]
-	s.add_runtime_dependency "slim", ["= 2.0.2"]
-	s.add_runtime_dependency "thin", ["= 1.6.2"]
+	s.add_runtime_dependency "sequel", ["= 4.15.0"]
+	s.add_runtime_dependency "slim", ["= 2.1.0"]
+	s.add_runtime_dependency "thin", ["= 1.6.3"]
 
 end
