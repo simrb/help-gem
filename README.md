@@ -23,7 +23,7 @@ If you are a newbie in programming development, the following representation tha
 ### Step 01, install ruby
 
 	$ \curl -sSL https://get.rvm.io | bash -s stable
-	# rvm install ruby-2.1.2
+	# rvm install ruby-2.1.3
 
 ### Step 02, install git
 
