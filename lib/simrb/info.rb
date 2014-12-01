@@ -11,7 +11,7 @@ module Simrb
 		:version		=>	'1.0.6',
 		:author			=>	'Linyu Deng',
 		:email			=>	'coolesting@gmail.com',
-		:homepage		=>	'https://github.com/simrb/simrb-help',
+		:homepage		=>	'https://github.com/simrb/help-gem',
 		:license		=>	'MIT',
 		:description	=>	'This is a command helper for simrb',
 		:summary		=>	'A utility of simrb',
