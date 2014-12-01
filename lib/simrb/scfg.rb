@@ -14,6 +14,7 @@ Spath						= {
 	:db_dir					=> 'db/',
 	:upload_dir				=> 'db/upload/',
 	:backup_dir				=> 'db/backup/',
+	:download_dir			=> 'db/download/',
 	:tmp_dir				=> 'tmp/',
 	:cache_dir				=> 'tmp/cache/simrb/',
 	:install_lock			=> 'tmp/install.lock',
@@ -101,7 +102,7 @@ Scfg						= {
 	],
 
 	:init_root_path			=> [
-		:db_dir, :upload_dir, :backup_dir,
+		:db_dir, :upload_dir, :backup_dir, :download_dir,
 		:tmp_dir, :log_dir, :module, :schema
 	],
 

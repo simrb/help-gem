@@ -1,9 +1,18 @@
-by linyu deng, at 2014/11/09
+by linyu deng, at Dec, 2014
 
-* add the file LICENSE and CHANGES for new module
-* rename core repository, and new a test repository
+- add the download directory option to scfg.rb
+*
+- add the file LICENSE and CHANGES for new module
+- rename core repository, and new a test repository
+- add the customized path file to extend the scfg.rb for module
 
-by linyu deng, at 2011/01/01
+by <author/maintainer>, at <month>, <year>
 
-- mark down what are you want to do with * at the start of item of list
-- change the * to - if it has been finished
+- initialize this file
+- mark down the main tasks you intend to do
+- append a day numeric if that task had been done
+- about the task id in commit like C141112, c141113 14, c141115-18
+  C141112 		- the task at day 12 in Nov, 2014
+  c141113 14 	- the tasks at days 13 and 14 in Nov, 2014
+  c141115-18	- the tasks at days from 15 to 18 in Nov, 2014
+
