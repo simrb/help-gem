@@ -15,5 +15,8 @@ Scfg[:environment]		= 'development'
 # your directory path of local
 # Spath[:repo_dirs][0]	= (File.expand_path("~/.simrb") + '/')
 
-# add repository path like this
-# Spath[:repo_dirs] << "/home/yours"
+# append anthor repository to repo variable
+# Spath[:repo_dirs] << "/home/my/repo"
+#
+# or, overwrite those default repositories
+# Spath[:repo_dirs] = ["/home/my/repo1", "/home/my/repo2"]

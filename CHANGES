@@ -1,7 +1,8 @@
 by linyu deng, at Dec, 2014
 
-- add the download directory option to scfg.rb
+- add the download directory option to scfg.rb 01
 *
+- separate the error log from normal record of server log
 - add the file LICENSE and CHANGES for new module
 - rename core repository, and new a test repository
 - add the customized path file to extend the scfg.rb for module
