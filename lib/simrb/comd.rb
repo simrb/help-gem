@@ -61,7 +61,9 @@ module Simrb
 
 				# initialize config file
 				data = File.read(File.dirname(__FILE__) + Scfg[:name_overwrite])
+				data << "\nScfg[:created]\t\t\t= '#{Time.now}'"
 				data << "\nScfg[:key]\t\t\t\t= '#{Simrb.random(16)}'\n"
+
 				Simrb.path_write(Scfg[:name], data)
 
 				# create module if it is given,
