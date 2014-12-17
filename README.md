@@ -56,6 +56,12 @@ finally, start it by web mode
 
 	$ simrb start
 
+### Edit server config
+
 if you need to change the port or ip for your project, just modify the option `port: 80` or `bind: 0.0.0.0` of the `scfg.rb` file
+
+### Kill server process
+
+	ps -ax | grep 'simrb start'
 
 ## END
