@@ -69,7 +69,7 @@ Scfg						= {
 	:bind 					=> '0.0.0.0',
 	:port					=> 3000,
 
-	:source					=> 'https://github.com/simrb/',
+	:source					=> 'https://github.com/',
 
 	# a default core repository for loading when the server booting
 	:main_repo				=> 'main-repo',

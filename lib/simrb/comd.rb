@@ -133,64 +133,65 @@ module Simrb
 				puts "Initializing module completed"
 			end
 
-			# get a module from remote repository to local
-			# autually, this is a clone method of git
-			#
-			# == Example
+			# pull module or repository from remote
 			# 
-			# 	$ simrb get system
 			#
-			# or, more than one at same time
+			# == Example 01, pull out the module
+			# 
+			# 	$ simrb get simrb/www
 			#
-			# 	$ simrb get system test
+			# or, more than one at the same time
 			#
-			def get args
-				Simrb.root_dir_force
-
-				repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Spath[:def_repo])
-				Simrb.path_write repo_dir
-
-				args.each do | name |
-					if Smods.keys.include? name
-						puts "The module #{name} is existing at local repository, hasn't got from remote"
-					else
-						path	= "#{Scfg[:source]}#{name}.git"
-						local	= "#{repo_dir}#{name}"
-						system("git clone #{path} #{local}")
-					end
-				end
-
-				puts "Implemented completely"
-			end
-
-			# pull whole remote repository from github
+			# 	$ simrb get simrb/www simrb/work
 			#
-			# == Example
 			#
-			# by default, that will pull the official repo
+			# == Example 02, pull out the repository with option '-r'
 			#
-			# 	$ simrb pull
+			# 	$ simrb pull -r
 			#
-			# add the option `-f` force to pulling
+			# add the option `-f` to force pulling and overwriting the origin repository in local
 			#
-			# 	$ simrb pull -f
+			# 	$ simrb pull -f -r
 			#
-			# or, specify the link you need in second parameter
+			# or, specify the save path with second parameter
 			#
-			# 	$ simrb pull repo ~/simrb_repo
+			# 	$ simrb pull simrb/test-repo ~/simrb_repo -r
 			#
 			def pull args = []
 				args, opts	= Simrb.input_format args
-				repo_name	= args[0] ? args[0] : Scfg[:main_repo]
-				from_repo	= Scfg[:source] + repo_name
-				to_repo 	= Simrb.addslash(args[1] ? args[1] : Spath[:repo_dirs][0])
-				ispull		= File.exist?(to_repo + repo_name + "/README.md") ? (opts[:f] ? true : false) : true
 
-				if ispull
-					Simrb.path_write to_repo
-					system("git clone #{from_repo}.git")
-					system("mv #{repo_name} #{to_repo}")
+				# pull the repo
+				if opts[:r]
+					repo_name	= args[0] ? args[0].split('/').last : Scfg[:main_repo]
+					full_name	= args[0] ? args[0] : "simrb/#{Scfg[:main_repo]}"
+					to_repo 	= Simrb.addslash(args[1] ? args[1] : Spath[:repo_dirs][0])
+					ispull		= File.exist?(to_repo + repo_name + "/README.md") ? (opts[:f] ? true : false) : true
+
+					if ispull
+						Simrb.path_write to_repo
+						system("git clone #{Scfg[:source]}#{full_name}.git")
+						system("mv #{repo_name} #{to_repo}")
+					end
+
+				# pull the module
+				else
+					Simrb.root_dir_force
+
+					repo_dir = Simrb.addslash(Spath[:repo_dirs][0] + Spath[:def_repo])
+					Simrb.path_write repo_dir
+
+					args.each do | full_name |
+						repo, name = full_name.split("/")
+						if Smods.keys.include? name
+							puts "The module #{name} is existing at local repository, hasn't got from remote"
+						else
+							path	= "#{Scfg[:source]}#{full_name}.git"
+							local	= "#{repo_dir}#{name}"
+							system("git clone #{path} #{local}")
+						end
+					end
 				end
+
 				puts "Implemented completely"
 			end
 
