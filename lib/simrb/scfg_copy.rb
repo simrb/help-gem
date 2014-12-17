@@ -10,7 +10,10 @@ Scfg[:port]				= 3000
 # options: development, production, test
 Scfg[:environment]		= 'development'
 
-# Scfg[:module_require]	= ['base','data','view','file','admin','user']
+# Scfg[:module_require]	= [
+# 	'base','data','view','file','admin','user',
+# 	'custom_module',
+# ]
 
 # your directory path of local
 # Spath[:repo_dirs][0]	= (File.expand_path("~/.simrb") + '/')
