@@ -5,8 +5,8 @@ Managing the projects and applications of sinatra, it let you build the web appl
 
 ## ENVIRONMENT
 
-ruby 2.1.3 +
-git 1.7.1 +
+	ruby 2.1.3 +
+	git 1.7.1 +
 
 
 ## INSTALLATION
