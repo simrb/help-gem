@@ -1,8 +1,15 @@
-# A framework to build server application
+## INTRODUCTION
 
-## BEGIN
+Managing the projects and applications of sinatra, it let you build the web application easily
 
-How to install ?
+
+## ENVIRONMENT
+
+ruby 2.1.3 +
+git 1.7.1 +
+
+
+## INSTALLATION
 
 	$ gem install simrb
 
@@ -12,37 +19,45 @@ or, install with github
 	$ cd help-gem
 	$ ruby setup.rb
 
-How to use ?
+test it with making a look
 
 	$ simrb help
 
-## RESCUE
 
-If you are a newbie in programming development, the following representation that tells you how to setup the environment step by step. assuming you have pure environment in your operating system that has not been installed anything or configured the application of `Simrb`
+## RESCUE for INSTALLTION
 
-### Step 01, install ruby
+Deploying a web application is not easy due to the complex server environment, the below question maybe help you across these issues.
+
+
+### How to setup the required environment
+
+install ruby
 
 	$ \curl -sSL https://get.rvm.io | bash -s stable
 	# rvm install ruby-2.1.3
 
-### Step 02, install git
+install git
 
 	$ yum install git
 
-### Step 03, install database, we suppose you use the database `sqlite` as the first installation, so
+
+### How to connect the database
+
+assuming your database is `sqlite`, so
 
 	# yum install sqlite3*
 	# yum install sqlite-devel
 
-now, the database connection string that supposes to be `db_connection: sqlite://db/data.rb`, you would place it in `scfg.rb` file later
+by default, the ORM is sequel, and the db connection should be `db_connection: sqlite://db/data.rb`, you put it into `scfg.rb` file for using, more details see [Sequel](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html)
 
-### Step 04, booting
 
-about web server environment, check the port 80 and make sure it has not been used
+### How to deal with the server
+
+firstly, you should ensure your port like `:80` that has not been used
 
 	netstat -apn | grep :80
 
-normally, you will find the apache(httpd) is running that always occupy the port 80, so remove it
+normally, you will find the apache(httpd) is running, it always occupies the port 80, uninstall it
 
 	# yum remove httpd
 
@@ -56,12 +71,20 @@ finally, start it by web mode
 
 	$ simrb start
 
-### Edit server config
+stop the server in production mode of running environment
 
-if you need to change the port or ip for your project, just modify the option `port: 80` or `bind: 0.0.0.0` of the `scfg.rb` file
+	$ simrb kill
 
-### Kill server process
+if it failed, kill its process for stop
 
 	ps -ax | grep 'simrb start'
 
-## END
+find that process of including the 'simrb start' words
+
+	kill -9 process_id
+
+
+### How to configure the server settings
+
+if you need to change the port or ip for your project, just modify the option `port: 80` or `bind: 0.0.0.0` in `scfg.rb` file
+
